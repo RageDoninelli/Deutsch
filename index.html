@@ -392,10 +392,66 @@
 
     <p class="module-heading">Módulo 3 · Tiempo libre</p>
 
-    <div class="set-card locked">
-      <div class="glyph">3.1</div>
+    <div class="set-card" data-set="m3_hobbys">
+      <div class="glyph">Hb</div>
       <div class="info">
-        <div class="name">Hobbys y el modal können</div>
+        <div class="name">3.1 Vokabeln: Hobbys</div>
+        <div class="stat" id="stat-m3_hobbys">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m3_hobbys" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m3_1_grammatik" onclick="openLesson('m3_1_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">3.1 Grammatik: können & gern</div>
+        <div class="stat" id="stat-lesson-m3_1_grammatik">Modal + preferencia</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m3_1_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m3_uhrzeit">
+      <div class="glyph">Uz</div>
+      <div class="info">
+        <div class="name">3.2 Vokabeln: Uhrzeit & Wochentage</div>
+        <div class="stat" id="stat-m3_uhrzeit">0 / 14 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m3_uhrzeit" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m3_2_grammatik" onclick="openLesson('m3_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">3.2 Grammatik: trennbare Verben</div>
+        <div class="stat" id="stat-lesson-m3_2_grammatik">Verbos separables</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m3_2_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m3_essen">
+      <div class="glyph">Es</div>
+      <div class="info">
+        <div class="name">3.3 Vokabeln: Essen & Trinken</div>
+        <div class="stat" id="stat-m3_essen">0 / 12 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m3_essen" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m3_3_grammatik" onclick="openLesson('m3_3_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">3.3 Grammatik: mögen & möchte</div>
+        <div class="stat" id="stat-lesson-m3_3_grammatik">Gustos y deseos</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m3_3_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="module-heading">Módulo 4 · Viajes y pasado</p>
+
+    <div class="set-card locked">
+      <div class="glyph">4.1</div>
+      <div class="info">
+        <div class="name">Transporte y verbos separables de viaje</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -657,10 +713,55 @@ const M2_BUERO = [
   {c:'der Kugelschreiber', word:'Kugelschreiber', es:'bolígrafo', hint:'Coloquialmente se abrevia "Kuli".'}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab'};
-const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende'];
+const M3_HOBBYS = [
+  {c:'lesen', word:'lesen', es:'leer', hint:'"Ich lese gern." (verbo con cambio de vocal: du liest, er liest)'},
+  {c:'schwimmen', word:'schwimmen', es:'nadar', hint:''},
+  {c:'fotografieren', word:'fotografieren', es:'fotografiar', hint:''},
+  {c:'Fußball spielen', word:'Fußball spielen', es:'jugar fútbol', hint:''},
+  {c:'Musik hören', word:'Musik hören', es:'escuchar música', hint:''},
+  {c:'kochen', word:'kochen', es:'cocinar', hint:''},
+  {c:'malen', word:'malen', es:'pintar', hint:''},
+  {c:'tanzen', word:'tanzen', es:'bailar', hint:''},
+  {c:'wandern', word:'wandern', es:'hacer senderismo', hint:''},
+  {c:'Rad fahren', word:'Rad fahren', es:'andar en bicicleta', hint:'Verbo separable: "Ich fahre Rad."'}
+];
+
+const M3_UHRZEIT = [
+  {c:'Montag', word:'Montag', es:'lunes', hint:''},
+  {c:'Dienstag', word:'Dienstag', es:'martes', hint:''},
+  {c:'Mittwoch', word:'Mittwoch', es:'miércoles', hint:''},
+  {c:'Donnerstag', word:'Donnerstag', es:'jueves', hint:''},
+  {c:'Freitag', word:'Freitag', es:'viernes', hint:''},
+  {c:'Samstag', word:'Samstag', es:'sábado', hint:''},
+  {c:'Sonntag', word:'Sonntag', es:'domingo', hint:''},
+  {c:'heute', word:'heute', es:'hoy', hint:''},
+  {c:'morgen', word:'morgen', es:'mañana', hint:'Cuidado: se escribe igual que "Morgen" (la mañana), pero minúscula.'},
+  {c:'am Wochenende', word:'am Wochenende', es:'el fin de semana', hint:''},
+  {c:'um ... Uhr', word:'um acht Uhr', es:'a las ocho', hint:'La preposición "um" se usa para horas exactas.'},
+  {c:'der Termin', word:'Termin', es:'la cita / el compromiso', hint:''},
+  {c:'die Woche', word:'Woche', es:'la semana', hint:''},
+  {c:'das Wochenende', word:'Wochenende', es:'el fin de semana (sustantivo)', hint:''}
+];
+
+const M3_ESSEN = [
+  {c:'das Brot', word:'Brot', es:'pan', hint:''},
+  {c:'der Käse', word:'Käse', es:'queso', hint:''},
+  {c:'die Milch', word:'Milch', es:'leche', hint:''},
+  {c:'der Kaffee', word:'Kaffee', es:'café', hint:''},
+  {c:'das Wasser', word:'Wasser', es:'agua', hint:''},
+  {c:'der Apfel', word:'Apfel', es:'manzana', hint:''},
+  {c:'das Ei', word:'Ei', es:'huevo', hint:'Plural: die Eier.'},
+  {c:'der Reis', word:'Reis', es:'arroz', hint:''},
+  {c:'das Gemüse', word:'Gemüse', es:'verdura', hint:'Siempre singular en alemán, aunque hable de varias verduras.'},
+  {c:'das Fleisch', word:'Fleisch', es:'carne', hint:''},
+  {c:'der Fisch', word:'Fisch', es:'pescado', hint:''},
+  {c:'der Saft', word:'Saft', es:'jugo', hint:''}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab'};
+const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -1092,6 +1193,91 @@ const LESSONS = {
       {prompt:'___ Stühle sind bequem. (estas, plural)', options:['Dieser','Diese','Dieses'], correct:1}
     ],
     apply: 'Cierre del Módulo 2: describe tu escritorio o lugar de trabajo en 3-4 frases, usando dieser/diese/dieses y al menos un objeto en acusativo (Ich habe... / Es gibt...).'
+  },
+  m3_1_grammatik: {
+    heading: '3.1 Grammatik',
+    title: 'können & gern',
+    intro: 'Para hablar de hobbies necesitas dos herramientas: el modal können (poder/saber hacer algo) y el adverbio gern (con gusto), que se usa para decir qué te gusta hacer.',
+    tables: [
+      {
+        title: 'können (poder / saber)',
+        rows: [ ['ich','kann'], ['du','kannst'], ['er / sie / es','kann'], ['wir','können'], ['ihr','könnt'], ['sie / Sie','können'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich kann gut schwimmen.', es:'Sé nadar bien. (el verbo principal va al final, en infinitivo)'},
+      {de:'Kannst du kochen?', es:'¿Sabes cocinar?'},
+      {de:'Ich lese gern.', es:'Me gusta leer. (gern después del verbo conjugado)'},
+      {de:'Wir spielen gern Fußball.', es:'Nos gusta jugar fútbol.'}
+    ],
+    note: 'Con verbos modales como können, el verbo conjugado va en segunda posición y el verbo principal se manda al <strong>final</strong> de la frase, en infinitivo — esto se llama "Satzklammer" (corchete verbal). <strong>Gern</strong> no es un verbo, es un adverbio que se coloca justo después del verbo conjugado para decir que algo te gusta hacer.',
+    exercises: [
+      {prompt:'Ich ___ gut tanzen. (können, ich)', options:['kann','kannst','könnt'], correct:0},
+      {prompt:'___ du fotografieren? (können, du)', options:['Kann','Kannst','Könnt'], correct:1},
+      {prompt:'Wir ___ am Wochenende wandern. (können, wir)', options:['kann','könnt','können'], correct:2},
+      {prompt:'Ich male ___. (me gusta pintar)', options:['gern','kann','können'], correct:0},
+      {prompt:'Ordena: "gut / kann / ich / kochen"', options:['Ich kann gut kochen.','Ich gut kann kochen.','Kann ich gut kochen.'], correct:0},
+      {prompt:'Sie (ella) ___ sehr gut Klavier spielen. (können)', options:['kann','kannst','könnt'], correct:0}
+    ],
+    apply: 'Di tres frases sobre ti: algo que sabes hacer bien (mit können), algo que te gusta hacer (mit gern), y una pregunta para alguien más usando "Kannst du...?"'
+  },
+  m3_2_grammatik: {
+    heading: '3.2 Grammatik',
+    title: 'trennbare Verben (verbos separables)',
+    intro: 'Muchos verbos alemanes tienen un prefijo que se separa y se va al final de la frase cuando el verbo está conjugado. Son clave para hablar de horarios y rutinas.',
+    tables: [
+      {
+        title: 'Ejemplos de verbos separables',
+        rows: [ ['aufstehen (levantarse)','Ich stehe um 7 Uhr auf.'], ['einkaufen (comprar/ir de compras)','Ich kaufe am Samstag ein.'], ['fernsehen (ver televisión)','Er sieht abends fern.'], ['anrufen (llamar por teléfono)','Ich rufe dich morgen an.'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich stehe um acht Uhr auf.', es:'Me levanto a las ocho. (aufstehen → stehe... auf)'},
+      {de:'Wir kaufen am Freitag ein.', es:'Compramos el viernes.'},
+      {de:'Siehst du heute fern?', es:'¿Ves televisión hoy?'},
+      {de:'Ich rufe meine Mutter an.', es:'Llamo a mi madre.'}
+    ],
+    note: 'En infinitivo el prefijo va pegado al verbo (aufstehen), pero al conjugar, el prefijo "salta" al final de la frase y el resto del verbo se conjuga normalmente en segunda posición. Se reconocen porque el prefijo suele llevar el acento al pronunciarlos.',
+    exercises: [
+      {prompt:'Ich ___ um sieben Uhr ___. (aufstehen)', options:['stehe … auf','aufstehe …','stehe auf …'], correct:0},
+      {prompt:'Wir ___ am Samstag ___. (einkaufen)', options:['einkaufen …','kaufen … ein','kauft … ein'], correct:1},
+      {prompt:'___ du heute Abend ___? (fernsehen)', options:['Siehst … fern','Fernsiehst … ','Siehst fern …'], correct:0},
+      {prompt:'Ich ___ meinen Bruder ___. (anrufen)', options:['rufe … an','anrufe …','rufe an …'], correct:0},
+      {prompt:'¿A qué hora aparece el prefijo separado en la frase?', options:['Al inicio','En medio','Al final'], correct:2},
+      {prompt:'Er ___ am Wochenende ___. (einkaufen)', options:['kauft … ein','einkauft …','kauft ein …'], correct:0}
+    ],
+    apply: 'Describe tu rutina de sábado en 3 frases usando al menos dos verbos separables (aufstehen, einkaufen, fernsehen) con la hora correspondiente.'
+  },
+  m3_3_grammatik: {
+    heading: '3.3 Grammatik',
+    title: 'mögen & möchte',
+    intro: 'Cerramos el Módulo 3 con dos verbos para hablar de comida: mögen (gustar, en general) y möchte (querer, de forma educada — para pedir algo puntual).',
+    tables: [
+      {
+        title: 'mögen (gustar, en general)',
+        rows: [ ['ich','mag'], ['du','magst'], ['er / sie / es','mag'], ['wir','mögen'], ['ihr','mögt'], ['sie / Sie','mögen'] ]
+      },
+      {
+        title: 'möchte (querer, forma educada)',
+        rows: [ ['ich','möchte'], ['du','möchtest'], ['er / sie / es','möchte'], ['wir','möchten'], ['ihr','möchtet'], ['sie / Sie','möchten'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich mag Kaffee.', es:'Me gusta el café. (gusto general, con sustantivo directo)'},
+      {de:'Magst du Fisch?', es:'¿Te gusta el pescado?'},
+      {de:'Ich möchte einen Kaffee, bitte.', es:'Quisiera un café, por favor. (petición educada)'},
+      {de:'Möchtest du schwimmen gehen?', es:'¿Quisieras ir a nadar? (möchte + verbo en infinitivo al final)'}
+    ],
+    note: '<strong>mögen</strong> expresa gusto general y casi siempre va seguido directo de un sustantivo ("Ich mag Äpfel"). <strong>möchte</strong> es más específico y educado — se usa para pedir algo en un momento puntual (en un café, un restaurante) y, si va con un verbo, ese verbo va en infinitivo al final, igual que con können.',
+    exercises: [
+      {prompt:'Ich ___ Käse. (mögen, gusto general)', options:['mag','magst','mögt'], correct:0},
+      {prompt:'___ du Fisch? (mögen, du)', options:['Mag','Magst','Mögt'], correct:1},
+      {prompt:'Ich ___ einen Saft, bitte. (möchte, petición educada)', options:['möchte','möchtest','mag'], correct:0},
+      {prompt:'Wir ___ am Wochenende wandern gehen. (möchten)', options:['möchte','möchten','möchtet'], correct:1},
+      {prompt:'¿Cuál usarías para pedir algo en un café?', options:['mögen','möchte','können'], correct:1},
+      {prompt:'Sie (ellos) ___ kein Fleisch. (mögen)', options:['mag','mögt','mögen'], correct:2}
+    ],
+    apply: 'Cierre del Módulo 3: escribe 2 frases con "Ich mag..." sobre comida que te gusta, y 1 frase con "Ich möchte..." como si estuvieras pidiendo algo en un café.'
   }
 };
 
