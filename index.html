@@ -298,10 +298,39 @@
       </div>
     </div>
 
-    <div class="set-card locked">
-      <div class="glyph">1.3</div>
+    <div class="set-card" data-set="m1_familie">
+      <div class="glyph">Fm</div>
       <div class="info">
-        <div class="name">Familia e idiomas</div>
+        <div class="name">1.3 Vokabeln: Familie</div>
+        <div class="stat" id="stat-m1_familie">0 / 12 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m1_familie" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m1_sprachen">
+      <div class="glyph">Sp</div>
+      <div class="info">
+        <div class="name">1.3 Vokabeln: Sprachen</div>
+        <div class="stat" id="stat-m1_sprachen">0 / 8 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m1_sprachen" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m1_3_grammatik" onclick="openLesson('m1_3_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">1.3 Grammatik: Possessive, sprechen & ja/nein/doch</div>
+        <div class="stat" id="stat-lesson-m1_3_grammatik">mein/dein + verbo irregular</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m1_3_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="module-heading">Módulo 2 · Objetos y compras</p>
+
+    <div class="set-card locked">
+      <div class="glyph">2.1</div>
+      <div class="info">
+        <div class="name">Muebles, colores y materiales</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -481,9 +510,35 @@ const M1_ZAHLEN = [
   {c:'100', word:'hundert', es:'cien', hint:''}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab'};
+const M1_FAMILIE = [
+  {c:'die Mutter', word:'Mutter', es:'madre', hint:''},
+  {c:'der Vater', word:'Vater', es:'padre', hint:''},
+  {c:'die Eltern', word:'Eltern', es:'padres', hint:'Siempre en plural.'},
+  {c:'der Bruder', word:'Bruder', es:'hermano', hint:''},
+  {c:'die Schwester', word:'Schwester', es:'hermana', hint:''},
+  {c:'die Geschwister', word:'Geschwister', es:'hermanos (en general)', hint:'Incluye hermanos y hermanas juntos, siempre plural.'},
+  {c:'der Sohn', word:'Sohn', es:'hijo', hint:''},
+  {c:'die Tochter', word:'Tochter', es:'hija', hint:''},
+  {c:'die Oma', word:'Oma', es:'abuela', hint:'Forma corta de "Großmutter".'},
+  {c:'der Opa', word:'Opa', es:'abuelo', hint:'Forma corta de "Großvater".'},
+  {c:'der Onkel', word:'Onkel', es:'tío', hint:''},
+  {c:'die Tante', word:'Tante', es:'tía', hint:''}
+];
+
+const M1_SPRACHEN = [
+  {c:'Deutsch', word:'Deutsch', es:'alemán', hint:'"Ich spreche Deutsch."'},
+  {c:'Englisch', word:'Englisch', es:'inglés', hint:''},
+  {c:'Spanisch', word:'Spanisch', es:'español', hint:''},
+  {c:'Französisch', word:'Französisch', es:'francés', hint:''},
+  {c:'Italienisch', word:'Italienisch', es:'italiano', hint:''},
+  {c:'Russisch', word:'Russisch', es:'ruso', hint:''},
+  {c:'Chinesisch', word:'Chinesisch', es:'chino', hint:''},
+  {c:'Arabisch', word:'Arabisch', es:'árabe', hint:''}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab'};
 const WIDE_SETS = ['m1_begruessung','m1_berufe'];
 
 /* ---------------- TTS ---------------- */
@@ -796,6 +851,37 @@ const LESSONS = {
       {prompt:'Er ist ___ Arzt. (no es médico — sin artículo)', options:['nicht','kein','keine'], correct:1}
     ],
     apply: 'Practica en voz alta: di dos cosas que SÍ tienes (hermanos, mascota, trabajo) con "Ich habe..." y dos cosas que NO tienes o NO eres, eligiendo bien entre "nicht" y "kein".'
+  },
+  m1_3_grammatik: {
+    heading: '1.3 Grammatik',
+    title: 'Possessivpronomen, sprechen & ja/nein/doch',
+    intro: 'Cerramos el Módulo 1 con lo necesario para hablar de tu familia y los idiomas que hablas: los posesivos (mi, tu, su), el verbo irregular sprechen, y cómo responder correctamente a preguntas negativas.',
+    tables: [
+      {
+        title: 'Possessivpronomen (con sustantivo masculino / femenino)',
+        rows: [ ['mein Bruder / meine Schwester','mi'], ['dein Bruder / deine Schwester','tu'], ['sein Bruder / seine Schwester','su (de él)'], ['ihr Bruder / ihre Schwester','su (de ella)'] ]
+      },
+      {
+        title: 'sprechen (hablar) — verbo irregular',
+        rows: [ ['ich','spreche'], ['du','sprichst'], ['er / sie / es','spricht'], ['wir','sprechen'], ['ihr','sprecht'], ['sie / Sie','sprechen'] ]
+      }
+    ],
+    examples: [
+      {de:'Meine Mutter spricht Italienisch.', es:'Mi madre habla italiano.'},
+      {de:'Sprichst du Deutsch?', es:'¿Hablas alemán? (nota el cambio de vocal: e → i)'},
+      {de:'Peters Schwester wohnt in Berlin.', es:'La hermana de Peter vive en Berlín. (genitivo con nombres: +s, sin apóstrofe)'},
+      {de:'Hast du keine Geschwister? — Doch, ich habe einen Bruder.', es:'¿No tienes hermanos? — Sí (al contrario), tengo un hermano.'}
+    ],
+    note: 'Con nombres propios, el genitivo se forma agregando <strong>-s</strong> directamente (Peters, Anas), sin apóstrofe salvo que el nombre ya termine en "s" (Thomas\u2019 Bruder). Y recuerda: <strong>doch</strong> se usa para contradecir una pregunta negativa — cuando la respuesta real es "sí" pero la pregunta esperaba un "no".',
+    exercises: [
+      {prompt:'___ Mutter heißt Ana. (mi, con "Mutter" femenino)', options:['mein','meine','meinen'], correct:1},
+      {prompt:'Sprichst du Englisch? — Ja, ich ___ Englisch.', options:['spreche','sprichst','spricht'], correct:0},
+      {prompt:'Das ist ___ Bruder. (mi, con "Bruder" masculino)', options:['mein','meine','meins'], correct:0},
+      {prompt:'La hermana de Peter (genitivo con nombre)', options:['Peter\u2019s Schwester','Peters Schwester','Peter Schwester'], correct:1},
+      {prompt:'Hast du keine Geschwister? — ___, ich habe einen Bruder.', options:['Ja','Nein','Doch'], correct:2},
+      {prompt:'Er ___ drei Sprachen. (sprechen)', options:['spreche','sprecht','spricht'], correct:2}
+    ],
+    apply: 'Cierre del Módulo 1: presenta a tu familia en 3-4 frases usando mein/meine, y agrega una frase con sprechen sobre qué idiomas hablan ustedes.'
   }
 };
 
