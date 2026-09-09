@@ -1,4 +1,4 @@
-const CACHE_NAME = "viva-strudel-cache-v2";
+const CACHE_NAME = "viva-strudel-cache-v3";
 const APP_SHELL = [
   "./",
   "./index.html",

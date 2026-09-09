@@ -71,6 +71,63 @@
   .set-card.locked{opacity:.5; cursor:default;}
   .set-card.locked .glyph{color:var(--ink-soft);}
 
+  .module-heading{
+    font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-soft); margin:22px 2px 10px;
+  }
+  .module-heading:first-of-type{margin-top:2px;}
+
+  .kcell.wide{
+    aspect-ratio:auto; width:100%; grid-column:1 / -1; justify-content:flex-start;
+    padding:12px 14px; font-size:14px; font-weight:500; text-align:left;
+  }
+
+  /* LESSON SCREEN */
+  .lesson-block{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:20px; margin-bottom:16px;
+  }
+  .lesson-block .lb-label{
+    font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--plum); margin-bottom:10px;
+  }
+  .lesson-block p{font-size:14px; line-height:1.6; color:var(--ink); margin:0 0 10px;}
+  .conj-table{width:100%; border-collapse:collapse; margin:6px 0 4px;}
+  .conj-table th{
+    font-size:11px; text-transform:uppercase; letter-spacing:.03em; color:var(--ink-soft);
+    text-align:left; padding:6px 8px; border-bottom:1px solid var(--line);
+  }
+  .conj-table td{padding:8px; font-size:14.5px; border-bottom:1px solid var(--dough); }
+  .conj-table td.pron{color:var(--ink-soft); width:34%;}
+  .conj-table td.form{font-weight:700; color:var(--cinnamon-deep);}
+  .ex-row{display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid var(--dough);}
+  .ex-row:last-child{border-bottom:none;}
+  .ex-row .ex-text{flex:1; font-size:14.5px;}
+  .ex-row .ex-es{display:block; font-size:12px; color:var(--ink-soft); margin-top:2px;}
+  .mini-speak{
+    width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    font-size:14px; cursor:pointer; flex-shrink:0;
+  }
+  .ex-item{
+    padding:14px 16px; border-radius:12px; border:1.5px solid var(--line); margin-bottom:10px; background:#fff;
+  }
+  .ex-item .ex-prompt{font-size:14.5px; font-weight:600; margin-bottom:10px;}
+  .ex-opts{display:flex; flex-direction:column; gap:8px;}
+  .ex-opt{
+    padding:10px 12px; border-radius:10px; border:1.5px solid var(--line); background:var(--dough);
+    font-size:14px; text-align:left; cursor:pointer; font-family:inherit;
+  }
+  .ex-opt.correct{border-color:var(--apple); background:var(--apple-soft);}
+  .ex-opt.incorrect{border-color:var(--error); background:#F8E9E5;}
+  .ex-opt[disabled]{cursor:default;}
+  .apply-prompt{
+    background:var(--plum-soft); border-radius:12px; padding:16px; font-size:14px; line-height:1.55;
+  }
+  .lesson-done-btn{
+    width:100%; padding:14px 0; border-radius:12px; border:none; background:var(--cinnamon); color:#fff;
+    font-weight:700; font-size:15px; cursor:pointer; margin-top:4px;
+  }
+
   .intro-note{
     font-size:13.5px; color:var(--ink-soft); line-height:1.55; padding:14px 16px;
     border-left:3px solid var(--plum); background:rgba(107,42,58,0.06); border-radius:0 8px 8px 0;
@@ -165,6 +222,8 @@
   <section id="screen-home" class="screen active">
     <p class="intro-note">Aprende alemán desde cero. Empieza por el alfabeto y la pronunciación — la base para todo lo demás.</p>
 
+    <p class="module-heading">Fundamentos</p>
+
     <div class="set-card" data-set="buchstaben">
       <div class="glyph">Aa</div>
       <div class="info">
@@ -192,18 +251,38 @@
       </div>
     </div>
 
-    <div class="set-card locked">
-      <div class="glyph">Wb</div>
+    <p class="module-heading">Módulo 1 · Primeros contactos</p>
+
+    <div class="set-card" data-set="m1_begruessung">
+      <div class="glyph">Gb</div>
       <div class="info">
-        <div class="name">Vocabulario básico</div>
+        <div class="name">1.1 Vokabeln: Begrüßung & Länder</div>
+        <div class="stat" id="stat-m1_begruessung">0 / 16 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m1_begruessung" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m1_verben" onclick="openLesson('m1_verben')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">1.1 Grammatik: sein, heißen, kommen</div>
+        <div class="stat" id="stat-lesson-m1_verben">Presente singular + preguntas W</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m1_verben" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card locked">
+      <div class="glyph">1.2</div>
+      <div class="info">
+        <div class="name">Profesiones, familia y números</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
 
     <div class="set-card locked">
-      <div class="glyph">Gr</div>
+      <div class="glyph">1.3</div>
       <div class="info">
-        <div class="name">Gramática A1</div>
+        <div class="name">Familia e idiomas</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -251,6 +330,15 @@
         <span><span class="dot" style="background:var(--cinnamon);"></span>Dominada</span>
       </div>
     </div>
+  </section>
+
+  <!-- LESSON (grammar, V.I.V.A. method) -->
+  <section id="screen-lesson" class="screen">
+    <div class="back-row">
+      <span class="back-btn" onclick="goHome()">‹ Inicio</span>
+      <span class="set-heading" id="lesson-heading">Gramática</span>
+    </div>
+    <div id="lesson-content"></div>
   </section>
 
 </main>
@@ -310,8 +398,29 @@ const DIGRAPHE = [
   {c:'ST-', name:'sht', word:'Stadt', es:'ciudad', hint:'Al inicio de palabra, la S suena "sh": "shtadt".'}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe'};
+const M1_BEGRUESSUNG = [
+  {c:'Hallo', word:'Hallo', es:'Hola', hint:'Saludo informal, se usa a cualquier hora del día.'},
+  {c:'Guten Morgen', word:'Guten Morgen', es:'Buenos días', hint:'Se usa por la mañana, hasta cerca del mediodía.'},
+  {c:'Guten Tag', word:'Guten Tag', es:'Buenos días / buenas tardes', hint:'Saludo formal, válido durante el día.'},
+  {c:'Guten Abend', word:'Guten Abend', es:'Buenas noches (al llegar)', hint:'Se usa desde el atardecer en adelante.'},
+  {c:'Tschüs', word:'Tschüs', es:'Chao', hint:'Despedida informal, muy común entre amigos.'},
+  {c:'Auf Wiedersehen', word:'Auf Wiedersehen', es:'Hasta luego', hint:'Despedida formal.'},
+  {c:'Wie geht\u2019s?', word:'Wie geht\u2019s?', es:'¿Cómo estás?', hint:'Forma corta e informal de preguntar cómo está alguien.'},
+  {c:'Wie geht es Ihnen?', word:'Wie geht es Ihnen?', es:'¿Cómo está usted?', hint:'Versión formal, con "Sie".'},
+  {c:'Gut, danke', word:'Gut, danke', es:'Bien, gracias', hint:'Respuesta positiva típica.'},
+  {c:'Es geht', word:'Es geht', es:'Más o menos', hint:'Respuesta neutra, ni bien ni mal.'},
+  {c:'Nicht so gut', word:'Nicht so gut', es:'No muy bien', hint:'Respuesta cuando las cosas no van tan bien.'},
+  {c:'Deutschland', word:'Deutschland', es:'Alemania', hint:'"Ich komme aus Deutschland."'},
+  {c:'Österreich', word:'Österreich', es:'Austria', hint:'"Ich komme aus Österreich."'},
+  {c:'die Schweiz', word:'die Schweiz', es:'Suiza', hint:'Lleva artículo: "Ich komme aus der Schweiz."'},
+  {c:'Spanien', word:'Spanien', es:'España', hint:'"Ich komme aus Spanien."'},
+  {c:'Mexiko', word:'Mexiko', es:'México', hint:'"Ich komme aus Mexiko."'}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab'};
+const WIDE_SETS = ['m1_begruessung'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -361,6 +470,7 @@ let flipped = false;
 function hideAllScreens(){
   document.getElementById('screen-home').classList.remove('active');
   document.getElementById('screen-set').classList.remove('active');
+  document.getElementById('screen-lesson').classList.remove('active');
 }
 function goHome(){
   hideAllScreens();
@@ -402,10 +512,15 @@ function renderStudy(){
 function renderFace(item){
   const face = document.getElementById('fc-face');
   const hint = document.getElementById('fc-hint');
+  const kind = SET_KIND[currentSet] || 'phonetic';
   if(!flipped){
-    const sizeStyle = item.c.length>3 ? ' style="font-size:40px;"' : '';
+    const sizeStyle = (kind==='vocab') ? ' style="font-size:26px; max-width:230px;"' : (item.c.length>3 ? ' style="font-size:40px;"' : '');
     face.innerHTML = '<div class="big-letter"'+sizeStyle+'>'+item.c+'</div>';
-    hint.textContent = 'Toca para ver la pronunciación';
+    hint.textContent = 'Toca para ver la traducción';
+  } else if(kind==='vocab'){
+    face.innerHTML = '<div class="back-word">'+item.es+'</div>'
+      + '<div class="back-hint">'+item.hint+'</div>';
+    hint.textContent = 'Toca para volver';
   } else {
     face.innerHTML = '<div class="back-name">"'+item.c+'" se pronuncia <strong>'+item.name+'</strong></div>'
       + '<div class="back-word">'+item.word+'</div>'
@@ -465,9 +580,11 @@ function renderQuiz(){
   const item = quizQueue[quizIndex];
   const distractors = shuffle(arr.filter(x=>x.c!==item.c)).slice(0,3);
   const options = shuffle([item, ...distractors]);
+  const kind = SET_KIND[currentSet] || 'phonetic';
+  const promptText = kind==='vocab' ? 'Escucha y elige la frase que escuchaste' : 'Escucha la palabra y elige la letra o combinación que escuchaste';
 
   wrap.innerHTML = '<div class="score-row" id="scoreRow"></div>'
-    + '<div class="quiz-prompt">Escucha la palabra y elige la letra o combinación que escuchaste</div>'
+    + '<div class="quiz-prompt">'+promptText+'</div>'
     + '<button class="big-speak-btn" id="bigSpeakBtn">🔊</button>'
     + '<div class="quiz-reveal" id="quizReveal"></div>'
     + '<div class="options-grid" id="optionsGrid"></div>'
@@ -479,7 +596,7 @@ function renderQuiz(){
   options.forEach(opt=>{
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    if(opt.c.length>3) btn.style.fontSize = '15px';
+    if(opt.c.length>3) btn.style.fontSize = '14px';
     btn.textContent = opt.c;
     btn.onclick = ()=> handleAnswer(opt, item, btn, grid);
     grid.appendChild(btn);
@@ -530,14 +647,15 @@ function handleAnswer(chosen, correctItem, btnEl, grid){
 function renderGrid(){
   const arr = SETS[currentSet];
   const grid = document.getElementById('kgrid');
+  const isWide = WIDE_SETS.includes(currentSet);
   grid.innerHTML = '';
   arr.forEach((item,i)=>{
     const entry = getEntry(currentSet, item.c);
     const lvl = masteryLevel(entry.reps);
     const cell = document.createElement('div');
-    cell.className = 'kcell l'+lvl;
-    if(item.c.length>3) cell.style.fontSize = '11px';
-    cell.textContent = item.c;
+    cell.className = 'kcell l'+lvl + (isWide ? ' wide' : '');
+    if(!isWide && item.c.length>3) cell.style.fontSize = '11px';
+    cell.textContent = isWide ? (item.c+' — '+item.es) : item.c;
     cell.title = item.word;
     cell.addEventListener('click', ()=>{
       studyIndex = i;
@@ -545,6 +663,138 @@ function renderGrid(){
     });
     grid.appendChild(cell);
   });
+}
+
+/* ---------------- LESSON ENGINE (grammar, V.I.V.A.) ---------------- */
+const LESSONS = {
+  m1_verben: {
+    heading: '1.1 Grammatik',
+    title: 'sein, heißen, kommen + preguntas W',
+    intro: 'Estos tres verbos son la base de cualquier primera conversación en alemán: decir cómo te llamas, de dónde vienes y quién eres. Aquí los vemos en presente, forma singular (yo / tú / él-ella-ello).',
+    tables: [
+      {
+        title: 'sein (ser/estar)',
+        rows: [ ['ich','bin'], ['du','bist'], ['er / sie / es','ist'] ]
+      },
+      {
+        title: 'heißen (llamarse)',
+        rows: [ ['ich','heiße'], ['du','heißt'], ['er / sie / es','heißt'] ]
+      },
+      {
+        title: 'kommen (venir)',
+        rows: [ ['ich','komme'], ['du','kommst'], ['er / sie / es','kommt'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich heiße Laura. Ich komme aus Mexiko.', es:'Me llamo Laura. Vengo de México.'},
+      {de:'Woher kommst du?', es:'¿De dónde vienes? (pregunta con W)'},
+      {de:'Wie heißt du?', es:'¿Cómo te llamas? (pregunta con W)'},
+      {de:'Er ist mein Freund. Er kommt aus Spanien.', es:'Él es mi amigo. Él viene de España.'}
+    ],
+    note: 'Para decir de dónde vienes se usa la preposición <strong>aus</strong> + país: "Ich komme aus Deutschland." Las preguntas con W (Wie, Woher) siempre van con el verbo en segundo lugar.',
+    exercises: [
+      {prompt:'Ich ___ Laura.', options:['heiße','heißt','heißen'], correct:0},
+      {prompt:'Woher ___ du?', options:['kommst','kommt','komme'], correct:0},
+      {prompt:'Er ___ Tom.', options:['bin','bist','ist'], correct:2},
+      {prompt:'¿Qué pregunta corresponde a "Ich komme aus Spanien."?', options:['Wie heißt du?','Woher kommst du?','Wie geht\u2019s?'], correct:1},
+      {prompt:'Sie ___ aus Argentinien.', options:['komme','kommst','kommt'], correct:2},
+      {prompt:'Du ___ sehr nett. (sein)', options:['bin','bist','ist'], correct:1}
+    ],
+    apply: 'Ahora te toca: di en voz alta (o escribe en un papel) tres frases sobre ti — cómo te llamas, de dónde vienes y cómo estás — usando lo que acabas de ver. No hay respuesta que revisar aquí; el objetivo es que las produzcas tú mismo.'
+  }
+};
+
+let currentLessonId = null;
+let lessonExResults = [];
+
+function openLesson(id){
+  currentLessonId = id;
+  lessonExResults = [];
+  hideAllScreens();
+  document.getElementById('screen-lesson').classList.add('active');
+  const lesson = LESSONS[id];
+  document.getElementById('lesson-heading').textContent = lesson.heading;
+  renderLesson(lesson);
+}
+
+function renderLesson(lesson){
+  const c = document.getElementById('lesson-content');
+  let html = '';
+
+  html += '<div class="lesson-block"><div class="lb-label">Visualización</div>'
+    + '<p><strong>'+lesson.title+'</strong></p>'
+    + '<p>'+lesson.intro+'</p></div>';
+
+  lesson.tables.forEach(t=>{
+    html += '<div class="lesson-block"><div class="lb-label">'+t.title+'</div><table class="conj-table"><tbody>';
+    t.rows.forEach(r=>{
+      html += '<tr><td class="pron">'+r[0]+'</td><td class="form">'+r[1]+'</td></tr>';
+    });
+    html += '</tbody></table></div>';
+  });
+
+  html += '<div class="lesson-block"><div class="lb-label">Ejemplos</div>';
+  lesson.examples.forEach((ex,i)=>{
+    html += '<div class="ex-row"><button class="mini-speak" onclick="speak(lessonExampleText('+i+'))">🔊</button>'
+      + '<div class="ex-text">'+ex.de+'<span class="ex-es">'+ex.es+'</span></div></div>';
+  });
+  html += '<p style="margin-top:12px; font-size:13px;">'+lesson.note+'</p></div>';
+
+  html += '<div class="lesson-block"><div class="lb-label">Interacción — practica</div><div id="lesson-exercises"></div></div>';
+
+  html += '<div class="lesson-block"><div class="lb-label">Aplicación</div><div class="apply-prompt">'+lesson.apply+'</div></div>';
+
+  html += '<button class="lesson-done-btn" onclick="goHome()">‹ Volver al inicio</button>';
+
+  c.innerHTML = html;
+  renderLessonExercises(lesson);
+}
+
+function lessonExampleText(i){
+  return LESSONS[currentLessonId].examples[i].de;
+}
+
+function renderLessonExercises(lesson){
+  const wrap = document.getElementById('lesson-exercises');
+  wrap.innerHTML = '';
+  lesson.exercises.forEach((ex, i)=>{
+    const item = document.createElement('div');
+    item.className = 'ex-item';
+    item.innerHTML = '<div class="ex-prompt">'+(i+1)+'. '+ex.prompt+'</div><div class="ex-opts"></div>';
+    const optsWrap = item.querySelector('.ex-opts');
+    ex.options.forEach((optText, oi)=>{
+      const btn = document.createElement('button');
+      btn.className = 'ex-opt';
+      btn.textContent = optText;
+      btn.onclick = ()=>{
+        if(item.dataset.answered) return;
+        item.dataset.answered = '1';
+        const correct = oi === ex.correct;
+        lessonExResults[i] = correct;
+        [...optsWrap.children].forEach((b,bi)=>{
+          b.disabled = true;
+          if(bi===ex.correct) b.classList.add('correct');
+          else if(bi===oi) b.classList.add('incorrect');
+        });
+        saveLessonProgress(lesson);
+      };
+      optsWrap.appendChild(btn);
+    });
+    wrap.appendChild(item);
+  });
+}
+
+const LESSON_STORE_KEY = "viva_strudel_lesson_progress_v1";
+function loadLessonProgress(){
+  try{ return JSON.parse(localStorage.getItem(LESSON_STORE_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveLessonProgress(lesson){
+  const all = loadLessonProgress();
+  const answered = lessonExResults.filter(r=>r!==undefined).length;
+  const correct = lessonExResults.filter(r=>r===true).length;
+  all[currentLessonId] = {answered, correct, total:lesson.exercises.length};
+  localStorage.setItem(LESSON_STORE_KEY, JSON.stringify(all));
+  refreshHomeStats();
 }
 
 /* ---------------- HOME STATS ---------------- */
@@ -556,6 +806,20 @@ function refreshHomeStats(){
     const barEl = document.getElementById('bar-'+set);
     if(statEl) statEl.textContent = mastered+" / "+arr.length+" dominadas";
     if(barEl) barEl.style.width = Math.round(mastered/arr.length*100)+"%";
+  });
+  const lp = loadLessonProgress();
+  Object.keys(LESSONS).forEach(id=>{
+    const lesson = LESSONS[id];
+    const data = lp[id];
+    const statEl = document.getElementById('stat-lesson-'+id);
+    const barEl = document.getElementById('bar-lesson-'+id);
+    if(statEl && data){
+      statEl.textContent = data.correct+' / '+data.total+' correctas';
+    }
+    if(barEl){
+      const pct = data ? Math.round(data.answered/lesson.exercises.length*100) : 0;
+      barEl.style.width = pct+'%';
+    }
   });
 }
 
