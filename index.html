@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>V.I.V.A. Strudel — Alemán desde cero</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8A4B2E">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Strudel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dough:#F3E7D3;
+    --dough-deep:#E7D6B8;
+    --ink:#2B2420;
+    --ink-soft:#5C5248;
+    --cinnamon:#8A4B2E;
+    --cinnamon-deep:#6B3620;
+    --apple:#6E8B5A;
+    --apple-soft:#CBDAC0;
+    --plum:#6B2A3A;
+    --plum-soft:#E6C9CF;
+    --line:#D9C9AC;
+    --card:#FFFBF3;
+    --error:#B3452F;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0; background:var(--dough); color:var(--ink); font-family:'DM Sans', sans-serif; overscroll-behavior:none;}
+  body{min-height:100vh; display:flex; flex-direction:column;}
+  .serif{font-family:'Fraunces', serif;}
+
+  header{
+    padding:18px 20px 14px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid var(--line);
+  }
+  header .title{display:flex; align-items:baseline; gap:8px;}
+  header .title .name{font-family:'Fraunces', serif; font-size:20px; font-weight:700; color:var(--ink);}
+  header .title .sub{font-size:12px; color:var(--ink-soft); letter-spacing:.02em;}
+  .seal{
+    width:32px; height:32px; border-radius:9px; background:var(--cinnamon);
+    color:var(--dough); display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:15px; font-weight:700;
+  }
+
+  main{flex:1; width:100%; max-width:480px; margin:0 auto; padding:20px; padding-bottom:40px;}
+
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  /* HOME */
+  .set-card{
+    background:var(--dough-deep); border:1px solid var(--line); border-radius:14px;
+    padding:20px; margin-bottom:14px; display:flex; align-items:center; gap:16px;
+    cursor:pointer; transition:transform .15s ease;
+  }
+  .set-card:active{transform:scale(.98);}
+  .set-card .glyph{font-family:'Fraunces',serif; font-size:34px; font-weight:700; color:var(--cinnamon-deep); min-width:44px; text-align:center;}
+  .set-card .info{flex:1;}
+  .set-card .info .name{font-size:16.5px; font-weight:700; margin-bottom:4px;}
+  .set-card .info .stat{font-size:12.5px; color:var(--ink-soft);}
+  .bar{height:6px; border-radius:3px; background:var(--line); margin-top:8px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--cinnamon); border-radius:3px;}
+
+  .set-card.locked{opacity:.5; cursor:default;}
+  .set-card.locked .glyph{color:var(--ink-soft);}
+
+  .intro-note{
+    font-size:13.5px; color:var(--ink-soft); line-height:1.55; padding:14px 16px;
+    border-left:3px solid var(--plum); background:rgba(107,42,58,0.06); border-radius:0 8px 8px 0;
+    margin-bottom:22px;
+  }
+
+  /* TABS */
+  .tabbar{display:flex; gap:8px; margin-bottom:18px; border-bottom:1px solid var(--line);}
+  .tab{flex:1; text-align:center; padding:10px 4px; font-size:14px; font-weight:700; color:var(--ink-soft); border-bottom:2px solid transparent; cursor:pointer;}
+  .tab.active{color:var(--cinnamon-deep); border-bottom-color:var(--cinnamon-deep);}
+
+  .back-row{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .back-btn{font-size:13px; color:var(--cinnamon-deep); font-weight:700; cursor:pointer; padding:6px 0;}
+  .set-heading{font-size:19px; font-weight:700; font-family:'Fraunces',serif;}
+
+  /* STUDY (flashcards) */
+  .flash-wrap{display:flex; flex-direction:column; align-items:center;}
+  .flash-progress{font-size:12px; color:var(--ink-soft); margin-bottom:12px;}
+  .flashcard{
+    width:100%; max-width:280px; min-height:280px; background:var(--card); border:1px solid var(--line);
+    border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    box-shadow:0 3px 0 var(--line); cursor:pointer; position:relative; padding:20px; gap:10px;
+  }
+  .flashcard .big-letter{font-family:'Fraunces',serif; font-size:88px; font-weight:700; color:var(--cinnamon-deep);}
+  .flashcard .back-name{font-size:15px; color:var(--ink-soft); font-weight:500;}
+  .flashcard .back-word{font-size:21px; font-weight:700; color:var(--ink);}
+  .flashcard .back-es{font-size:13.5px; color:var(--ink-soft); margin-top:-6px;}
+  .flashcard .back-hint{font-size:12.5px; color:var(--plum); background:var(--plum-soft); padding:8px 12px; border-radius:10px; text-align:center; line-height:1.4; margin-top:4px;}
+  .flashcard .tap-hint{position:absolute; bottom:12px; font-size:11px; color:var(--line);}
+  .speaker-btn{
+    position:absolute; top:12px; right:12px; width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--line); background:#fff; font-size:16px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; padding:0;
+  }
+  .flash-actions{display:flex; gap:12px; margin-top:20px; width:100%; max-width:280px;}
+  .flash-actions button{flex:1; padding:13px 0; border-radius:10px; border:1px solid var(--line); background:#fff; font-family:inherit; font-size:14px; font-weight:700; cursor:pointer;}
+  .flash-actions .know{color:var(--cinnamon-deep); border-color:var(--cinnamon-deep);}
+  .flash-actions .review{color:var(--plum); border-color:var(--plum-soft);}
+
+  /* PRACTICE (quiz) */
+  .quiz-wrap{display:flex; flex-direction:column; align-items:center;}
+  .score-row{display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom:16px;}
+  .score-dot{width:9px; height:9px; border-radius:50%; background:var(--line);}
+  .score-dot.hit{background:var(--apple);}
+  .score-dot.miss{background:var(--error);}
+  .quiz-prompt{font-size:13.5px; color:var(--ink-soft); text-align:center; margin-bottom:16px; max-width:26ch;}
+  .big-speak-btn{
+    width:84px; height:84px; border-radius:50%; border:none; background:var(--plum); color:#fff;
+    font-size:32px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 22px -10px rgba(107,42,58,0.6); margin-bottom:16px;
+  }
+  .big-speak-btn:active{transform:scale(.94);}
+  .quiz-reveal{font-family:'Fraunces',serif; font-size:14px; color:var(--ink-soft); min-height:18px; margin-bottom:14px;}
+  .options-grid{width:100%; max-width:280px; display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .option-btn{padding:16px 8px; border-radius:14px; border:2px solid var(--line); background:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:21px; color:var(--ink); cursor:pointer;}
+  .option-btn.correct{border-color:var(--apple); background:var(--apple-soft); color:#3E5230;}
+  .option-btn.incorrect{border-color:var(--error); background:#F8E9E5; color:var(--error);}
+  .quiz-feedback{font-size:13.5px; font-weight:700; min-height:20px; margin-top:14px; text-align:center;}
+  .quiz-feedback.ok{color:#3E5230;}
+  .quiz-feedback.bad{color:var(--error);}
+  .quiz-continue{width:100%; max-width:280px; padding:13px 0; border-radius:12px; border:none; background:var(--cinnamon); color:#fff; font-weight:700; font-size:14px; cursor:pointer; margin-top:14px;}
+  .quiz-continue:disabled{opacity:.35; cursor:default;}
+  .quiz-done{text-align:center; padding:24px 10px;}
+  .quiz-done .score{font-size:36px; font-weight:700; color:var(--cinnamon-deep); margin-bottom:6px; font-family:'Fraunces',serif;}
+
+  /* PROGRESS GRID */
+  .kgrid{display:grid; grid-template-columns:repeat(6,1fr); gap:8px;}
+  .kcell{aspect-ratio:1/1; border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-size:18px; font-weight:600; cursor:pointer; border:1px solid var(--line); background:#fff; color:var(--ink-soft);}
+  .kcell.l0{background:#fff;}
+  .kcell.l1{background:#F3E3C9; color:var(--ink); border-color:#E4C489;}
+  .kcell.l2{background:var(--cinnamon); color:#fff; border-color:var(--cinnamon);}
+  .legend{display:flex; gap:14px; margin-top:14px; font-size:11.5px; color:var(--ink-soft); flex-wrap:wrap;}
+  .legend span{display:inline-flex; align-items:center; gap:5px;}
+  .dot{width:10px; height:10px; border-radius:3px; display:inline-block;}
+
+  footer.app-footer{text-align:center; font-size:11px; color:var(--ink-soft); opacity:.6; padding:0 20px 20px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title">
+    <span class="name">V.I.V.A. Strudel</span>
+    <span class="sub">Deutsch von Null</span>
+  </div>
+  <div class="seal">S</div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section id="screen-home" class="screen active">
+    <p class="intro-note">Aprende alemán desde cero. Empieza por el alfabeto y la pronunciación — la base para todo lo demás.</p>
+
+    <div class="set-card" data-set="buchstaben">
+      <div class="glyph">Aa</div>
+      <div class="info">
+        <div class="name">Buchstaben (Alfabeto)</div>
+        <div class="stat" id="stat-buchstaben">0 / 26 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-buchstaben" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="sonderzeichen">
+      <div class="glyph">Ää</div>
+      <div class="info">
+        <div class="name">Sonderzeichen (Ä Ö Ü ß)</div>
+        <div class="stat" id="stat-sonderzeichen">0 / 4 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-sonderzeichen" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card locked">
+      <div class="glyph">Wb</div>
+      <div class="info">
+        <div class="name">Vocabulario básico</div>
+        <div class="stat">Próximamente</div>
+      </div>
+    </div>
+
+    <div class="set-card locked">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">Gramática A1</div>
+        <div class="stat">Próximamente</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SET (study / practice / progress) -->
+  <section id="screen-set" class="screen">
+    <div class="back-row">
+      <span class="back-btn" onclick="goHome()">‹ Inicio</span>
+      <span class="set-heading" id="set-heading">Buchstaben</span>
+    </div>
+    <div class="tabbar">
+      <div class="tab active" data-tab="study" onclick="switchTab('study')">Estudiar</div>
+      <div class="tab" data-tab="practice" onclick="switchTab('practice')">Practicar</div>
+      <div class="tab" data-tab="progress" onclick="switchTab('progress')">Progreso</div>
+    </div>
+
+    <!-- STUDY -->
+    <div id="tab-study" class="tabpane">
+      <div class="flash-wrap">
+        <div class="flash-progress" id="study-progress">1 / 26</div>
+        <div class="flashcard" id="flashcard" onclick="flipCard()">
+          <button class="speaker-btn" onclick="event.stopPropagation(); speak(currentStudyItem().word)">🔊</button>
+          <div id="fc-face"></div>
+          <div class="tap-hint" id="fc-hint">Toca para ver la pronunciación</div>
+        </div>
+        <div class="flash-actions">
+          <button class="review" onclick="studyNext(false)">🔁 Repasar</button>
+          <button class="know" onclick="studyNext(true)">✓ Lo sé</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRACTICE -->
+    <div id="tab-practice" class="tabpane" style="display:none;">
+      <div class="quiz-wrap" id="quiz-wrap"></div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div id="tab-progress" class="tabpane" style="display:none;">
+      <div class="kgrid" id="kgrid"></div>
+      <div class="legend">
+        <span><span class="dot" style="background:#fff;border:1px solid var(--line);"></span>Nuevo</span>
+        <span><span class="dot" style="background:#F3E3C9;"></span>Practicando</span>
+        <span><span class="dot" style="background:var(--cinnamon);"></span>Dominada</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">Toca el altavoz para escuchar la pronunciación en alemán</footer>
+
+<script>
+/* ---------------- DATA ---------------- */
+const BUCHSTABEN = [
+  {c:'A', name:'ah', word:'Apfel', es:'manzana', hint:'Como la "a" del español.'},
+  {c:'B', name:'beh', word:'Buch', es:'libro', hint:'Como la "b" del español.'},
+  {c:'C', name:'tseh', word:'Café', es:'café', hint:'Sola casi no se usa; suele ir en "CH" o "K".'},
+  {c:'D', name:'deh', word:'Dach', es:'techo', hint:'Como la "d" del español.'},
+  {c:'E', name:'eh', word:'Ende', es:'final', hint:'Una "e" cerrada, como en "él".'},
+  {c:'F', name:'ef', word:'Fisch', es:'pez', hint:'Como la "f" del español.'},
+  {c:'G', name:'geh', word:'Garten', es:'jardín', hint:'Siempre suave, como "gato", nunca como "j".'},
+  {c:'H', name:'hah', word:'Haus', es:'casa', hint:'Se aspira, como una "j" muy suave en inglés "house".'},
+  {c:'I', name:'ih', word:'Insel', es:'isla', hint:'Como la "i" del español.'},
+  {c:'J', name:'yot', word:'Jahr', es:'año', hint:'¡Ojo! Suena como la "y" de "yo", no como la "j" del español.'},
+  {c:'K', name:'kah', word:'Katze', es:'gato', hint:'Como la "k" del español.'},
+  {c:'L', name:'el', word:'Licht', es:'luz', hint:'Como la "l" del español.'},
+  {c:'M', name:'em', word:'Maus', es:'ratón', hint:'Como la "m" del español.'},
+  {c:'N', name:'en', word:'Nacht', es:'noche', hint:'Como la "n" del español.'},
+  {c:'O', name:'oh', word:'Ofen', es:'horno', hint:'Como la "o" del español.'},
+  {c:'P', name:'peh', word:'Park', es:'parque', hint:'Como la "p" del español.'},
+  {c:'Q', name:'ku', word:'Quelle', es:'fuente', hint:'Siempre va con U, y "QU" suena "kv".'},
+  {c:'R', name:'er', word:'Rot', es:'rojo', hint:'Gutural, se pronuncia casi en la garganta.'},
+  {c:'S', name:'es', word:'Sonne', es:'sol', hint:'Antes de vocal suena como "z" francesa (sonora).'},
+  {c:'T', name:'teh', word:'Tisch', es:'mesa', hint:'Como la "t" del español.'},
+  {c:'U', name:'uh', word:'Uhr', es:'reloj', hint:'Como la "u" del español.'},
+  {c:'V', name:'fau', word:'Vater', es:'padre', hint:'¡Ojo! Suena como "f", no como "v".'},
+  {c:'W', name:'veh', word:'Wasser', es:'agua', hint:'¡Ojo! Suena como la "v" del español, no como "w" en inglés.'},
+  {c:'X', name:'iks', word:'Taxi', es:'taxi', hint:'Como la "x" del español.'},
+  {c:'Y', name:'ypsilon', word:'System', es:'sistema', hint:'Suena entre "i" y "u" francesa.'},
+  {c:'Z', name:'tset', word:'Zeit', es:'tiempo', hint:'¡Ojo! Siempre suena "ts", como en "tsunami".'}
+];
+
+const SONDERZEICHEN = [
+  {c:'Ä', name:'ä', word:'Mädchen', es:'niña', hint:'Como una "e" abierta, entre "a" y "e".'},
+  {c:'Ö', name:'ö', word:'schön', es:'bonito', hint:'Redondea los labios como para decir "o" pero di "e".'},
+  {c:'Ü', name:'ü', word:'für', es:'para', hint:'Redondea los labios como para decir "u" pero di "i".'},
+  {c:'ß', name:'eszett', word:'Straße', es:'calle', hint:'Es una "s" fuerte y larga, equivale a escribir "ss".'}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen'};
+
+/* ---------------- TTS ---------------- */
+let deVoice = null;
+function loadDeVoice(){
+  const voices = speechSynthesis.getVoices();
+  deVoice = voices.find(v=>v.lang==='de-DE') || voices.find(v=>v.lang && v.lang.startsWith('de')) || null;
+}
+if('speechSynthesis' in window){
+  loadDeVoice();
+  window.speechSynthesis.onvoiceschanged = loadDeVoice;
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'de-DE';
+  if(deVoice) u.voice = deVoice;
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+/* ---------------- STORAGE ---------------- */
+const STORE_KEY = "viva_strudel_progress_v1";
+function loadProgress(){
+  try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }catch(e){ return {}; }
+}
+function saveProgress(p){ localStorage.setItem(STORE_KEY, JSON.stringify(p)); }
+let progress = loadProgress(); // { "buchstaben:A": {reps:0} }
+
+function keyFor(set,c){ return set+":"+c; }
+function getEntry(set,c){
+  const k = keyFor(set,c);
+  if(!progress[k]) progress[k] = {reps:0};
+  return progress[k];
+}
+function masteryLevel(reps){
+  if(reps>=6) return 2;
+  if(reps>=3) return 1;
+  return 0;
+}
+
+/* ---------------- NAV STATE ---------------- */
+let currentSet = "buchstaben";
+let studyIndex = 0;
+let flipped = false;
+
+function hideAllScreens(){
+  document.getElementById('screen-home').classList.remove('active');
+  document.getElementById('screen-set').classList.remove('active');
+}
+function goHome(){
+  hideAllScreens();
+  document.getElementById('screen-home').classList.add('active');
+  refreshHomeStats();
+}
+function openSet(set){
+  currentSet = set;
+  studyIndex = 0;
+  flipped = false;
+  hideAllScreens();
+  document.getElementById('screen-set').classList.add('active');
+  document.getElementById('set-heading').textContent = SET_LABEL[set];
+  switchTab('study');
+}
+document.querySelectorAll('.set-card[data-set]').forEach(el=>{
+  el.addEventListener('click', ()=> openSet(el.dataset.set));
+});
+
+function switchTab(tab){
+  document.querySelectorAll('#screen-set .tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===tab));
+  document.getElementById('tab-study').style.display = tab==='study' ? 'block':'none';
+  document.getElementById('tab-practice').style.display = tab==='practice' ? 'block':'none';
+  document.getElementById('tab-progress').style.display = tab==='progress' ? 'block':'none';
+  if(tab==='study') renderStudy();
+  if(tab==='practice') startQuiz();
+  if(tab==='progress') renderGrid();
+}
+
+/* ---------------- STUDY (flashcards) ---------------- */
+function currentStudyItem(){ return SETS[currentSet][studyIndex]; }
+function renderStudy(){
+  const arr = SETS[currentSet];
+  const item = arr[studyIndex];
+  document.getElementById('study-progress').textContent = (studyIndex+1)+" / "+arr.length;
+  flipped = false;
+  renderFace(item);
+}
+function renderFace(item){
+  const face = document.getElementById('fc-face');
+  const hint = document.getElementById('fc-hint');
+  if(!flipped){
+    face.innerHTML = '<div class="big-letter">'+item.c+'</div>';
+    hint.textContent = 'Toca para ver la pronunciación';
+  } else {
+    face.innerHTML = '<div class="back-name">"'+item.c+'" se pronuncia <strong>'+item.name+'</strong></div>'
+      + '<div class="back-word">'+item.word+'</div>'
+      + '<div class="back-es">'+item.es+'</div>'
+      + '<div class="back-hint">'+item.hint+'</div>';
+    hint.textContent = 'Toca para volver';
+  }
+}
+function flipCard(){
+  flipped = !flipped;
+  renderFace(currentStudyItem());
+  if(flipped) speak(currentStudyItem().word);
+}
+function studyNext(know){
+  const item = currentStudyItem();
+  const entry = getEntry(currentSet, item.c);
+  entry.reps = know ? entry.reps+1 : Math.max(0, entry.reps-1);
+  saveProgress(progress);
+  const arr = SETS[currentSet];
+  studyIndex = (studyIndex+1) % arr.length;
+  renderStudy();
+}
+
+/* ---------------- PRACTICE (quiz) ---------------- */
+let quizQueue = [];
+let quizIndex = 0;
+let quizResults = [];
+let quizAnswered = false;
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function startQuiz(){
+  quizQueue = shuffle(SETS[currentSet]);
+  quizIndex = 0;
+  quizResults = [];
+  renderQuiz();
+}
+function renderQuiz(){
+  const wrap = document.getElementById('quiz-wrap');
+  const arr = SETS[currentSet];
+
+  if(quizIndex >= quizQueue.length){
+    const hits = quizResults.filter(r=>r==='hit').length;
+    wrap.innerHTML = '<div class="quiz-done"><div class="score">'+hits+' / '+quizQueue.length+'</div>'
+      + '<div>'+(hits===quizQueue.length ? '¡Perfecto! Dominas esta sección.' : 'Buen intento — repite para reforzar.')+'</div>'
+      + '<div class="flash-actions" style="margin-top:18px; max-width:280px; margin-left:auto; margin-right:auto;"><button class="know" style="flex:1;" onclick="startQuiz()">↻ Repetir práctica</button></div></div>';
+    return;
+  }
+
+  quizAnswered = false;
+  const item = quizQueue[quizIndex];
+  const distractors = shuffle(arr.filter(x=>x.c!==item.c)).slice(0,3);
+  const options = shuffle([item, ...distractors]);
+
+  wrap.innerHTML = '<div class="score-row" id="scoreRow"></div>'
+    + '<div class="quiz-prompt">Escucha la palabra y elige la letra o combinación que escuchaste</div>'
+    + '<button class="big-speak-btn" id="bigSpeakBtn">🔊</button>'
+    + '<div class="quiz-reveal" id="quizReveal"></div>'
+    + '<div class="options-grid" id="optionsGrid"></div>'
+    + '<div class="quiz-feedback" id="quizFeedback"></div>'
+    + '<button class="quiz-continue" id="continueBtn" disabled>Continuar</button>';
+
+  renderScoreRow();
+  const grid = document.getElementById('optionsGrid');
+  options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt.c;
+    btn.onclick = ()=> handleAnswer(opt, item, btn, grid);
+    grid.appendChild(btn);
+  });
+  document.getElementById('bigSpeakBtn').onclick = ()=> speak(item.word);
+  document.getElementById('continueBtn').onclick = ()=>{
+    quizIndex++;
+    renderQuiz();
+  };
+  speak(item.word);
+}
+function renderScoreRow(){
+  const row = document.getElementById('scoreRow');
+  if(!row) return;
+  row.innerHTML = '';
+  quizQueue.forEach((_,i)=>{
+    const dot = document.createElement('div');
+    dot.className = 'score-dot';
+    if(quizResults[i]==='hit') dot.classList.add('hit');
+    else if(quizResults[i]==='miss') dot.classList.add('miss');
+    row.appendChild(dot);
+  });
+}
+function handleAnswer(chosen, correctItem, btnEl, grid){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const isCorrect = chosen.c === correctItem.c;
+  quizResults[quizIndex] = isCorrect ? 'hit' : 'miss';
+
+  const entry = getEntry(currentSet, correctItem.c);
+  entry.reps = isCorrect ? entry.reps+1 : Math.max(0, entry.reps-1);
+  saveProgress(progress);
+
+  [...grid.children].forEach(btn=>{
+    if(btn.textContent === correctItem.c) btn.classList.add('correct');
+    else if(btn===btnEl) btn.classList.add('incorrect');
+  });
+
+  document.getElementById('quizReveal').textContent = correctItem.word+' — '+correctItem.es;
+  const fb = document.getElementById('quizFeedback');
+  fb.textContent = isCorrect ? 'Richtig! ✓' : 'Casi — era "'+correctItem.c+'"';
+  fb.className = 'quiz-feedback '+(isCorrect ? 'ok':'bad');
+  document.getElementById('continueBtn').disabled = false;
+  renderScoreRow();
+}
+
+/* ---------------- PROGRESS GRID ---------------- */
+function renderGrid(){
+  const arr = SETS[currentSet];
+  const grid = document.getElementById('kgrid');
+  grid.innerHTML = '';
+  arr.forEach((item,i)=>{
+    const entry = getEntry(currentSet, item.c);
+    const lvl = masteryLevel(entry.reps);
+    const cell = document.createElement('div');
+    cell.className = 'kcell l'+lvl;
+    cell.textContent = item.c;
+    cell.title = item.word;
+    cell.addEventListener('click', ()=>{
+      studyIndex = i;
+      switchTab('study');
+    });
+    grid.appendChild(cell);
+  });
+}
+
+/* ---------------- HOME STATS ---------------- */
+function refreshHomeStats(){
+  Object.keys(SETS).forEach(set=>{
+    const arr = SETS[set];
+    const mastered = arr.filter(item=> masteryLevel(getEntry(set,item.c).reps) === 2).length;
+    const statEl = document.getElementById('stat-'+set);
+    const barEl = document.getElementById('bar-'+set);
+    if(statEl) statEl.textContent = mastered+" / "+arr.length+" dominadas";
+    if(barEl) barEl.style.width = Math.round(mastered/arr.length*100)+"%";
+  });
+}
+
+/* ---------------- INIT ---------------- */
+refreshHomeStats();
+
+/* ---------------- PWA: service worker ---------------- */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
