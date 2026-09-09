@@ -271,11 +271,30 @@
       </div>
     </div>
 
-    <div class="set-card locked">
-      <div class="glyph">1.2</div>
+    <div class="set-card" data-set="m1_berufe">
+      <div class="glyph">Br</div>
       <div class="info">
-        <div class="name">Profesiones, familia y números</div>
-        <div class="stat">Próximamente</div>
+        <div class="name">1.2 Vokabeln: Berufe</div>
+        <div class="stat" id="stat-m1_berufe">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m1_berufe" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m1_zahlen">
+      <div class="glyph">Zl</div>
+      <div class="info">
+        <div class="name">1.2 Vokabeln: Zahlen 0–100</div>
+        <div class="stat" id="stat-m1_zahlen">0 / 29 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m1_zahlen" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m1_2_grammatik" onclick="openLesson('m1_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">1.2 Grammatik: haben, Plural & Verneinung</div>
+        <div class="stat" id="stat-lesson-m1_2_grammatik">Presente plural + nicht/kein</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m1_2_grammatik" style="width:0%"></div></div>
       </div>
     </div>
 
@@ -417,10 +436,55 @@ const M1_BEGRUESSUNG = [
   {c:'Mexiko', word:'Mexiko', es:'México', hint:'"Ich komme aus Mexiko."'}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab'};
-const WIDE_SETS = ['m1_begruessung'];
+const M1_BERUFE = [
+  {c:'der Lehrer / die Lehrerin', word:'Lehrer', es:'profesor / profesora', hint:'"Ich bin Lehrer." — sin artículo al decir la profesión.'},
+  {c:'der Arzt / die Ärztin', word:'Arzt', es:'médico / médica', hint:'Forma femenina con diéresis: Ärztin.'},
+  {c:'der Ingenieur / die Ingenieurin', word:'Ingenieur', es:'ingeniero / ingeniera', hint:'Palabra muy similar al español.'},
+  {c:'der Student / die Studentin', word:'Student', es:'estudiante (universitario/a)', hint:'Para escuela se usa "der Schüler / die Schülerin".'},
+  {c:'der Verkäufer / die Verkäuferin', word:'Verkäufer', es:'vendedor / vendedora', hint:'De "verkaufen" (vender).'},
+  {c:'der Koch / die Köchin', word:'Koch', es:'cocinero / cocinera', hint:'Forma femenina con diéresis: Köchin.'},
+  {c:'der Kellner / die Kellnerin', word:'Kellner', es:'mesero / mesera', hint:'Muy común en cafés y restaurantes.'},
+  {c:'der Programmierer / die Programmiererin', word:'Programmierer', es:'programador / programadora', hint:'Palabra larga pero reconocible del inglés.'},
+  {c:'der Anwalt / die Anwältin', word:'Anwalt', es:'abogado / abogada', hint:'Forma femenina con diéresis: Anwältin.'},
+  {c:'der Friseur / die Friseurin', word:'Friseur', es:'peluquero / peluquera', hint:'Viene del francés, se pronuncia "frisör".'}
+];
+
+const M1_ZAHLEN = [
+  {c:'0', word:'null', es:'cero', hint:''},
+  {c:'1', word:'eins', es:'uno', hint:''},
+  {c:'2', word:'zwei', es:'dos', hint:''},
+  {c:'3', word:'drei', es:'tres', hint:''},
+  {c:'4', word:'vier', es:'cuatro', hint:''},
+  {c:'5', word:'fünf', es:'cinco', hint:''},
+  {c:'6', word:'sechs', es:'seis', hint:''},
+  {c:'7', word:'sieben', es:'siete', hint:''},
+  {c:'8', word:'acht', es:'ocho', hint:''},
+  {c:'9', word:'neun', es:'nueve', hint:''},
+  {c:'10', word:'zehn', es:'diez', hint:''},
+  {c:'11', word:'elf', es:'once', hint:''},
+  {c:'12', word:'zwölf', es:'doce', hint:''},
+  {c:'13', word:'dreizehn', es:'trece', hint:'Desde el 13, se arma como "unidad + zehn".'},
+  {c:'14', word:'vierzehn', es:'catorce', hint:''},
+  {c:'15', word:'fünfzehn', es:'quince', hint:''},
+  {c:'16', word:'sechzehn', es:'dieciséis', hint:''},
+  {c:'17', word:'siebzehn', es:'diecisiete', hint:''},
+  {c:'18', word:'achtzehn', es:'dieciocho', hint:''},
+  {c:'19', word:'neunzehn', es:'diecinueve', hint:''},
+  {c:'20', word:'zwanzig', es:'veinte', hint:''},
+  {c:'30', word:'dreißig', es:'treinta', hint:'Excepción: no sigue el patrón "-zig" con "drei".'},
+  {c:'40', word:'vierzig', es:'cuarenta', hint:'Desde el 40, las decenas se arman como "unidad + zig".'},
+  {c:'50', word:'fünfzig', es:'cincuenta', hint:''},
+  {c:'60', word:'sechzig', es:'sesenta', hint:''},
+  {c:'70', word:'siebzig', es:'setenta', hint:''},
+  {c:'80', word:'achtzig', es:'ochenta', hint:''},
+  {c:'90', word:'neunzig', es:'noventa', hint:''},
+  {c:'100', word:'hundert', es:'cien', hint:''}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab'};
+const WIDE_SETS = ['m1_begruessung','m1_berufe'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -518,8 +582,8 @@ function renderFace(item){
     face.innerHTML = '<div class="big-letter"'+sizeStyle+'>'+item.c+'</div>';
     hint.textContent = 'Toca para ver la traducción';
   } else if(kind==='vocab'){
-    face.innerHTML = '<div class="back-word">'+item.es+'</div>'
-      + '<div class="back-hint">'+item.hint+'</div>';
+    const hintHtml = item.hint ? '<div class="back-hint">'+item.hint+'</div>' : '';
+    face.innerHTML = '<div class="back-word">'+item.es+'</div>' + hintHtml;
     hint.textContent = 'Toca para volver';
   } else {
     face.innerHTML = '<div class="back-name">"'+item.c+'" se pronuncia <strong>'+item.name+'</strong></div>'
@@ -701,6 +765,37 @@ const LESSONS = {
       {prompt:'Du ___ sehr nett. (sein)', options:['bin','bist','ist'], correct:1}
     ],
     apply: 'Ahora te toca: di en voz alta (o escribe en un papel) tres frases sobre ti — cómo te llamas, de dónde vienes y cómo estás — usando lo que acabas de ver. No hay respuesta que revisar aquí; el objetivo es que las produzcas tú mismo.'
+  },
+  m1_2_grammatik: {
+    heading: '1.2 Grammatik',
+    title: 'haben, el plural de sein y la negación (nicht / kein)',
+    intro: 'Ahora completamos el presente con las formas de "nosotros / vosotros / ellos-ustedes", agregamos el verbo haben (tener) completo, y aprendemos a decir "no" de dos formas distintas en alemán.',
+    tables: [
+      {
+        title: 'sein — formas que faltaban',
+        rows: [ ['wir','sind'], ['ihr','seid'], ['sie / Sie','sind'] ]
+      },
+      {
+        title: 'haben (tener) — completo',
+        rows: [ ['ich','habe'], ['du','hast'], ['er / sie / es','hat'], ['wir','haben'], ['ihr','habt'], ['sie / Sie','haben'] ]
+      }
+    ],
+    examples: [
+      {de:'Wir sind Studenten.', es:'Nosotros somos estudiantes.'},
+      {de:'Habt ihr Geschwister?', es:'¿Tienen hermanos (vosotros)?'},
+      {de:'Ich habe keine Geschwister.', es:'No tengo hermanos. (kein + sustantivo)'},
+      {de:'Das ist nicht mein Bruder.', es:'Ese no es mi hermano. (nicht + frase/verbo/adjetivo)'}
+    ],
+    note: 'Usa <strong>kein</strong> para negar un sustantivo con artículo indefinido o sin artículo ("Ich habe keinen Bruder"), y <strong>nicht</strong> para negar todo lo demás: un verbo, un adjetivo, o un sustantivo con artículo definido ("Das ist nicht der Lehrer").',
+    exercises: [
+      {prompt:'Wir ___ aus Mexiko. (sein)', options:['sind','seid','ist'], correct:0},
+      {prompt:'___ ihr Studenten?', options:['Habt','Hast','Habe'], correct:0},
+      {prompt:'Sie (ellos) ___ zwei Kinder. (haben)', options:['hat','haben','habt'], correct:1},
+      {prompt:'Ich habe ___ Bruder. (no tengo hermano)', options:['nicht','kein','keinen'], correct:2},
+      {prompt:'Das ist ___ mein Lehrer. (ese no es mi profesor)', options:['nicht','kein','keine'], correct:0},
+      {prompt:'Er ist ___ Arzt. (no es médico — sin artículo)', options:['nicht','kein','keine'], correct:1}
+    ],
+    apply: 'Practica en voz alta: di dos cosas que SÍ tienes (hermanos, mascota, trabajo) con "Ich habe..." y dos cosas que NO tienes o NO eres, eligiendo bien entre "nicht" y "kein".'
   }
 };
 
