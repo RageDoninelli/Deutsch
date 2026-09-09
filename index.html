@@ -183,6 +183,15 @@
       </div>
     </div>
 
+    <div class="set-card" data-set="digraphe">
+      <div class="glyph">Ch</div>
+      <div class="info">
+        <div class="name">Digraphe (combinaciones)</div>
+        <div class="stat" id="stat-digraphe">0 / 12 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-digraphe" style="width:0%"></div></div>
+      </div>
+    </div>
+
     <div class="set-card locked">
       <div class="glyph">Wb</div>
       <div class="info">
@@ -286,8 +295,23 @@ const SONDERZEICHEN = [
   {c:'ß', name:'eszett', word:'Straße', es:'calle', hint:'Es una "s" fuerte y larga, equivale a escribir "ss".'}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen'};
+const DIGRAPHE = [
+  {c:'CH (ich)', name:'ich-Laut', word:'ich', es:'yo', hint:'Sonido suave, como una "sh" muy floja con la lengua pegada al paladar. Aparece después de e, i, ä, ö, ü y consonantes.'},
+  {c:'CH (ach)', name:'ach-Laut', word:'ach', es:'ay (exclamación)', hint:'Sonido gutural, como una jota suave desde la garganta. Aparece después de a, o, u, au.'},
+  {c:'SCH', name:'sch', word:'Schule', es:'escuela', hint:'Suena como "sh" en inglés "shoe".'},
+  {c:'TSCH', name:'tsch', word:'Deutsch', es:'alemán', hint:'Suena como "ch" en español "chico".'},
+  {c:'PF', name:'pf', word:'Pfeffer', es:'pimienta', hint:'Se pronuncian la p y la f juntas, sin pausa entre ellas.'},
+  {c:'QU', name:'kv', word:'Quelle', es:'fuente', hint:'Siempre suena "kv", nunca "kw" como en inglés.'},
+  {c:'EI', name:'ai', word:'Wein', es:'vino', hint:'Suena como "ai" en español "hay".'},
+  {c:'IE', name:'ii', word:'Liebe', es:'amor', hint:'Suena como una "i" larga, no como diptongo.'},
+  {c:'EU', name:'oi', word:'Freund', es:'amigo', hint:'Suena como "oi" en español "hoy".'},
+  {c:'ÄU', name:'oi', word:'Häuser', es:'casas', hint:'Suena igual que EU: como "oi".'},
+  {c:'SP-', name:'shp', word:'Sport', es:'deporte', hint:'Al inicio de palabra, la S suena "sh": "shport".'},
+  {c:'ST-', name:'sht', word:'Stadt', es:'ciudad', hint:'Al inicio de palabra, la S suena "sh": "shtadt".'}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe'};
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -379,7 +403,8 @@ function renderFace(item){
   const face = document.getElementById('fc-face');
   const hint = document.getElementById('fc-hint');
   if(!flipped){
-    face.innerHTML = '<div class="big-letter">'+item.c+'</div>';
+    const sizeStyle = item.c.length>3 ? ' style="font-size:40px;"' : '';
+    face.innerHTML = '<div class="big-letter"'+sizeStyle+'>'+item.c+'</div>';
     hint.textContent = 'Toca para ver la pronunciación';
   } else {
     face.innerHTML = '<div class="back-name">"'+item.c+'" se pronuncia <strong>'+item.name+'</strong></div>'
@@ -454,6 +479,7 @@ function renderQuiz(){
   options.forEach(opt=>{
     const btn = document.createElement('button');
     btn.className = 'option-btn';
+    if(opt.c.length>3) btn.style.fontSize = '15px';
     btn.textContent = opt.c;
     btn.onclick = ()=> handleAnswer(opt, item, btn, grid);
     grid.appendChild(btn);
@@ -510,6 +536,7 @@ function renderGrid(){
     const lvl = masteryLevel(entry.reps);
     const cell = document.createElement('div');
     cell.className = 'kcell l'+lvl;
+    if(item.c.length>3) cell.style.fontSize = '11px';
     cell.textContent = item.c;
     cell.title = item.word;
     cell.addEventListener('click', ()=>{
