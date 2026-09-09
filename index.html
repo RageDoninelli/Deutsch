@@ -327,10 +327,75 @@
 
     <p class="module-heading">Módulo 2 · Objetos y compras</p>
 
-    <div class="set-card locked">
-      <div class="glyph">2.1</div>
+    <div class="set-card" data-set="m2_moebel">
+      <div class="glyph">Mb</div>
       <div class="info">
-        <div class="name">Muebles, colores y materiales</div>
+        <div class="name">2.1 Vokabeln: Möbel</div>
+        <div class="stat" id="stat-m2_moebel">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m2_moebel" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m2_farben">
+      <div class="glyph">Fb</div>
+      <div class="info">
+        <div class="name">2.1 Vokabeln: Farben</div>
+        <div class="stat" id="stat-m2_farben">0 / 8 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m2_farben" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m2_1_grammatik" onclick="openLesson('m2_1_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">2.1 Grammatik: Artikel, ein/kein & Plural</div>
+        <div class="stat" id="stat-lesson-m2_1_grammatik">der/die/das + formación del plural</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m2_1_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m2_gegenstaende">
+      <div class="glyph">Gg</div>
+      <div class="info">
+        <div class="name">2.2 Vokabeln: Gegenstände & Materialien</div>
+        <div class="stat" id="stat-m2_gegenstaende">0 / 16 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m2_gegenstaende" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m2_2_grammatik" onclick="openLesson('m2_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">2.2 Grammatik: Akkusativ</div>
+        <div class="stat" id="stat-lesson-m2_2_grammatik">den/einen/keinen</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m2_2_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m2_buero">
+      <div class="glyph">Bt</div>
+      <div class="info">
+        <div class="name">2.3 Vokabeln: Büro & Technik</div>
+        <div class="stat" id="stat-m2_buero">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m2_buero" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m2_3_grammatik" onclick="openLesson('m2_3_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">2.3 Grammatik: dieser/diese/dieses & repaso de plural</div>
+        <div class="stat" id="stat-lesson-m2_3_grammatik">Demostrativos</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m2_3_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="module-heading">Módulo 3 · Tiempo libre</p>
+
+    <div class="set-card locked">
+      <div class="glyph">3.1</div>
+      <div class="info">
+        <div class="name">Hobbys y el modal können</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -536,10 +601,66 @@ const M1_SPRACHEN = [
   {c:'Arabisch', word:'Arabisch', es:'árabe', hint:''}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab'};
-const WIDE_SETS = ['m1_begruessung','m1_berufe'];
+const M2_MOEBEL = [
+  {c:'der Tisch', word:'Tisch', es:'mesa', hint:'Plural: die Tische.'},
+  {c:'der Stuhl', word:'Stuhl', es:'silla', hint:'Plural: die Stühle (con diéresis).'},
+  {c:'das Bett', word:'Bett', es:'cama', hint:'Plural: die Betten.'},
+  {c:'der Schrank', word:'Schrank', es:'armario', hint:'Plural: die Schränke (con diéresis).'},
+  {c:'das Sofa', word:'Sofa', es:'sofá', hint:'Plural: die Sofas.'},
+  {c:'die Lampe', word:'Lampe', es:'lámpara', hint:'Plural: die Lampen.'},
+  {c:'das Regal', word:'Regal', es:'estante / repisa', hint:'Plural: die Regale.'},
+  {c:'der Teppich', word:'Teppich', es:'alfombra', hint:'Plural: die Teppiche.'},
+  {c:'das Fenster', word:'Fenster', es:'ventana', hint:'Plural: die Fenster (igual al singular).'},
+  {c:'die Tür', word:'Tür', es:'puerta', hint:'Plural: die Türen.'}
+];
+
+const M2_FARBEN = [
+  {c:'rot', word:'rot', es:'rojo', hint:''},
+  {c:'blau', word:'blau', es:'azul', hint:''},
+  {c:'grün', word:'grün', es:'verde', hint:''},
+  {c:'gelb', word:'gelb', es:'amarillo', hint:''},
+  {c:'schwarz', word:'schwarz', es:'negro', hint:''},
+  {c:'weiß', word:'weiß', es:'blanco', hint:''},
+  {c:'braun', word:'braun', es:'café / marrón', hint:''},
+  {c:'grau', word:'grau', es:'gris', hint:''}
+];
+
+const M2_GEGENSTAENDE = [
+  {c:'der Schlüssel', word:'Schlüssel', es:'llave', hint:''},
+  {c:'die Brille', word:'Brille', es:'lentes / gafas', hint:'Siempre en plural en alemán, como en español.'},
+  {c:'der Computer', word:'Computer', es:'computadora', hint:''},
+  {c:'die Tasche', word:'Tasche', es:'bolso', hint:''},
+  {c:'der Regenschirm', word:'Regenschirm', es:'paraguas', hint:'Literalmente "escudo de lluvia".'},
+  {c:'die Uhr', word:'Uhr', es:'reloj', hint:''},
+  {c:'das Buch', word:'Buch', es:'libro', hint:''},
+  {c:'die Flasche', word:'Flasche', es:'botella', hint:''},
+  {c:'der Stift', word:'Stift', es:'lápiz / pluma', hint:''},
+  {c:'der Rucksack', word:'Rucksack', es:'mochila', hint:''},
+  {c:'aus Holz', word:'aus Holz', es:'de madera', hint:'"Der Tisch ist aus Holz."'},
+  {c:'aus Glas', word:'aus Glas', es:'de vidrio', hint:''},
+  {c:'aus Plastik', word:'aus Plastik', es:'de plástico', hint:''},
+  {c:'aus Metall', word:'aus Metall', es:'de metal', hint:''},
+  {c:'aus Leder', word:'aus Leder', es:'de cuero', hint:''},
+  {c:'aus Papier', word:'aus Papier', es:'de papel', hint:''}
+];
+
+const M2_BUERO = [
+  {c:'der Laptop', word:'Laptop', es:'laptop', hint:''},
+  {c:'das Handy', word:'Handy', es:'celular', hint:''},
+  {c:'der Drucker', word:'Drucker', es:'impresora', hint:''},
+  {c:'die Tastatur', word:'Tastatur', es:'teclado', hint:''},
+  {c:'die Maus', word:'Maus', es:'mouse (también significa "ratón" el animal)', hint:''},
+  {c:'der Bildschirm', word:'Bildschirm', es:'pantalla', hint:''},
+  {c:'das Kabel', word:'Kabel', es:'cable', hint:''},
+  {c:'der Ordner', word:'Ordner', es:'carpeta / archivador', hint:''},
+  {c:'das Papier', word:'Papier', es:'papel', hint:''},
+  {c:'der Kugelschreiber', word:'Kugelschreiber', es:'bolígrafo', hint:'Coloquialmente se abrevia "Kuli".'}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab'};
+const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -882,6 +1003,95 @@ const LESSONS = {
       {prompt:'Er ___ drei Sprachen. (sprechen)', options:['spreche','sprecht','spricht'], correct:2}
     ],
     apply: 'Cierre del Módulo 1: presenta a tu familia en 3-4 frases usando mein/meine, y agrega una frase con sprechen sobre qué idiomas hablan ustedes.'
+  },
+  m2_1_grammatik: {
+    heading: '2.1 Grammatik',
+    title: 'Artikel: der/die/das, ein/eine/kein & Plural',
+    intro: 'Cada sustantivo alemán tiene un género (masculino, femenino o neutro) que determina su artículo. Aquí repasamos los tres géneros con los muebles que acabas de aprender, y vemos cómo se forma el plural.',
+    tables: [
+      {
+        title: 'Artículo definido (der/die/das)',
+        rows: [ ['masculino','der Tisch'], ['femenino','die Lampe'], ['neutro','das Bett'] ]
+      },
+      {
+        title: 'Indefinido y negación (ein / kein)',
+        rows: [ ['der Tisch','ein Tisch / kein Tisch'], ['die Lampe','eine Lampe / keine Lampe'], ['das Bett','ein Bett / kein Bett'] ]
+      },
+      {
+        title: 'Plural — patrones comunes',
+        rows: [ ['-e','der Tisch → die Tische'], ['-(e)n','die Lampe → die Lampen'], ['-er (+Umlaut)','das Buch → die Bücher'], ['-s','das Sofa → die Sofas'], ['sin cambio','das Fenster → die Fenster'] ]
+      }
+    ],
+    examples: [
+      {de:'Der Stuhl ist blau.', es:'La silla es azul. (der, masculino)'},
+      {de:'Ich habe eine Lampe, aber kein Regal.', es:'Tengo una lámpara, pero no tengo estante.'},
+      {de:'Die Stühle sind neu.', es:'Las sillas son nuevas. (plural: die Stühle)'},
+      {de:'Wir haben zwei Fenster.', es:'Tenemos dos ventanas. (Fenster no cambia en plural)'}
+    ],
+    note: 'No existe una regla 100% fija para saber el género de un sustantivo nuevo — hay que aprenderlo junto con la palabra (por eso en las tarjetas de vocabulario siempre ves "der/die/das"). El plural tampoco sigue una única regla: mejor memorízalo como parte de la palabra, igual que el género.',
+    exercises: [
+      {prompt:'___ Tisch ist braun. (artículo definido, masculino)', options:['Der','Die','Das'], correct:0},
+      {prompt:'Ich habe ___ Sofa. (un, neutro)', options:['ein','eine','einen'], correct:0},
+      {prompt:'Plural de "die Lampe":', options:['die Lampen','die Lampe','die Lampes'], correct:0},
+      {prompt:'Plural de "das Buch":', options:['die Buche','die Bücher','die Buchs'], correct:1},
+      {prompt:'Ich habe ___ Teppich. (negación, masculino)', options:['kein','keine','keinen'], correct:0},
+      {prompt:'Plural de "das Fenster":', options:['die Fenstern','die Fenster','die Fensters'], correct:1}
+    ],
+    apply: 'Describe tu habitación o sala en 3 frases usando der/die/das y al menos un plural (por ejemplo, cuántas sillas o ventanas tiene).'
+  },
+  m2_2_grammatik: {
+    heading: '2.2 Grammatik',
+    title: 'Akkusativ (caso acusativo)',
+    intro: 'El acusativo marca el objeto directo de la frase — lo que "recibe" la acción del verbo (tener, ver, comprar, necesitar). Solo el artículo masculino cambia; femenino, neutro y plural se quedan igual.',
+    tables: [
+      {
+        title: 'Nominativ → Akkusativ',
+        rows: [ ['der → den','der Tisch → den Tisch'], ['ein → einen','ein Stuhl → einen Stuhl'], ['kein → keinen','kein Schlüssel → keinen Schlüssel'], ['die, das, die (pl.)','no cambian'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich habe einen Stuhl.', es:'Tengo una silla. (der Stuhl → einen)'},
+      {de:'Ich sehe den Tisch.', es:'Veo la mesa. (der Tisch → den)'},
+      {de:'Ich brauche eine Tasche.', es:'Necesito un bolso. (die Tasche, no cambia)'},
+      {de:'Ich habe keinen Schlüssel.', es:'No tengo llave. (der Schlüssel → keinen)'}
+    ],
+    note: 'Verbos comunes que casi siempre van con acusativo: <strong>haben</strong> (tener), <strong>brauchen</strong> (necesitar), <strong>sehen</strong> (ver), <strong>kaufen</strong> (comprar). Antes de aplicar el cambio, primero identifica el género del sustantivo — si no es masculino, el artículo no cambia.',
+    exercises: [
+      {prompt:'Ich habe ___ Computer. (der Computer)', options:['der','den','dem'], correct:1},
+      {prompt:'Ich brauche ___ Flasche. (die Flasche)', options:['die','der','den'], correct:0},
+      {prompt:'Ich sehe ___ Regenschirm. (der Regenschirm)', options:['ein','einen','eine'], correct:1},
+      {prompt:'Ich habe ___ Buch. (das Buch)', options:['ein','einen','eine'], correct:0},
+      {prompt:'Ich habe ___ Rucksack. (negación, der Rucksack)', options:['kein','keine','keinen'], correct:2},
+      {prompt:'Ich kaufe ___ Lampe. (die Lampe)', options:['die','den','das'], correct:0}
+    ],
+    apply: 'Escribe 3 frases con "Ich habe..." o "Ich brauche..." usando objetos de Gegenstände & Technik, prestando atención a cuáles cambian a den/einen/keinen.'
+  },
+  m2_3_grammatik: {
+    heading: '2.3 Grammatik',
+    title: 'dieser/diese/dieses & repaso de plural',
+    intro: 'Cerramos el Módulo 2 con los demostrativos ("este/esta/esto") y un repaso de todo lo visto: género, artículos y plural, ahora aplicado al vocabulario de oficina y tecnología.',
+    tables: [
+      {
+        title: 'dieser / diese / dieses (este, esta, esto)',
+        rows: [ ['masculino','dieser Tisch'], ['femenino','diese Lampe'], ['neutro','dieses Regal'], ['plural','diese Stühle'] ]
+      }
+    ],
+    examples: [
+      {de:'Dieser Tisch ist aus Holz.', es:'Esta mesa es de madera.'},
+      {de:'Diese Lampe ist blau.', es:'Esta lámpara es azul.'},
+      {de:'Dieses Regal ist neu.', es:'Este estante es nuevo.'},
+      {de:'Es gibt einen Drucker im Büro.', es:'Hay una impresora en la oficina. ("es gibt" + acusativo)'}
+    ],
+    note: '"Dieser/diese/dieses" sigue exactamente el mismo patrón de género que "der/die/das" — si ya identificas el artículo definido de una palabra, el demostrativo es automático. La expresión <strong>es gibt</strong> (hay) siempre va seguida de acusativo: "Es gibt einen Stuhl", "Es gibt eine Lampe".',
+    exercises: [
+      {prompt:'___ Laptop ist neu. (este, der Laptop)', options:['Dieser','Diese','Dieses'], correct:0},
+      {prompt:'___ Maus ist klein. (esta, die Maus)', options:['Dieser','Diese','Dieses'], correct:1},
+      {prompt:'___ Kabel ist lang. (este, das Kabel)', options:['Dieser','Diese','Dieses'], correct:2},
+      {prompt:'Es gibt ___ Drucker im Büro. (der Drucker, acusativo)', options:['ein','einen','eine'], correct:1},
+      {prompt:'Plural de "der Ordner":', options:['die Ordner','die Ordnern','die Ordners'], correct:0},
+      {prompt:'___ Stühle sind bequem. (estas, plural)', options:['Dieser','Diese','Dieses'], correct:1}
+    ],
+    apply: 'Cierre del Módulo 2: describe tu escritorio o lugar de trabajo en 3-4 frases, usando dieser/diese/dieses y al menos un objeto en acusativo (Ich habe... / Es gibt...).'
   }
 };
 
