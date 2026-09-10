@@ -448,10 +448,66 @@
 
     <p class="module-heading">Módulo 4 · Viajes y pasado</p>
 
-    <div class="set-card locked">
-      <div class="glyph">4.1</div>
+    <div class="set-card" data-set="m4_verkehr">
+      <div class="glyph">Vk</div>
       <div class="info">
-        <div class="name">Transporte y verbos separables de viaje</div>
+        <div class="name">4.1 Vokabeln: Verkehrsmittel</div>
+        <div class="stat" id="stat-m4_verkehr">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m4_verkehr" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m4_1_grammatik" onclick="openLesson('m4_1_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">4.1 Grammatik: mit + Dativ & verbos de viaje</div>
+        <div class="stat" id="stat-lesson-m4_1_grammatik">Dativo + separables</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m4_1_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m4_tagesablauf">
+      <div class="glyph">Ta</div>
+      <div class="info">
+        <div class="name">4.2 Vokabeln: Tagesablauf</div>
+        <div class="stat" id="stat-m4_tagesablauf">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m4_tagesablauf" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m4_2_grammatik" onclick="openLesson('m4_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">4.2 Grammatik: Perfekt mit haben</div>
+        <div class="stat" id="stat-lesson-m4_2_grammatik">Pasado con haben</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m4_2_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m4_jahreszeiten">
+      <div class="glyph">Jz</div>
+      <div class="info">
+        <div class="name">4.3 Vokabeln: Jahreszeiten & Monate</div>
+        <div class="stat" id="stat-m4_jahreszeiten">0 / 16 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m4_jahreszeiten" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m4_3_grammatik" onclick="openLesson('m4_3_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">4.3 Grammatik: Perfekt mit sein & Zeitpräpositionen</div>
+        <div class="stat" id="stat-lesson-m4_3_grammatik">Pasado con sein + im/am/um</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m4_3_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="module-heading">Módulo 5 · En la ciudad</p>
+
+    <div class="set-card locked">
+      <div class="glyph">5.1</div>
+      <div class="info">
+        <div class="name">Direcciones y ubicación</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -758,10 +814,55 @@ const M3_ESSEN = [
   {c:'der Saft', word:'Saft', es:'jugo', hint:''}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab'};
-const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit'];
+const M4_VERKEHR = [
+  {c:'der Bus', word:'Bus', es:'autobús', hint:''},
+  {c:'der Zug', word:'Zug', es:'tren', hint:''},
+  {c:'das Auto', word:'Auto', es:'auto/coche', hint:''},
+  {c:'das Fahrrad', word:'Fahrrad', es:'bicicleta', hint:''},
+  {c:'die U-Bahn', word:'U-Bahn', es:'metro', hint:'Abreviación de "Untergrundbahn".'},
+  {c:'die Straßenbahn', word:'Straßenbahn', es:'tranvía', hint:''},
+  {c:'das Flugzeug', word:'Flugzeug', es:'avión', hint:''},
+  {c:'das Taxi', word:'Taxi', es:'taxi', hint:''},
+  {c:'zu Fuß', word:'zu Fuß', es:'a pie', hint:'"Ich gehe zu Fuß." — no lleva "mit".'},
+  {c:'das Schiff', word:'Schiff', es:'barco', hint:''}
+];
+
+const M4_TAGESABLAUF = [
+  {c:'aufwachen', word:'aufwachen', es:'despertarse', hint:'Verbo separable: "Ich wache auf."'},
+  {c:'duschen', word:'duschen', es:'ducharse', hint:''},
+  {c:'frühstücken', word:'frühstücken', es:'desayunar', hint:''},
+  {c:'zur Arbeit gehen', word:'zur Arbeit gehen', es:'ir al trabajo', hint:''},
+  {c:'arbeiten', word:'arbeiten', es:'trabajar', hint:''},
+  {c:'zu Mittag essen', word:'zu Mittag essen', es:'almorzar', hint:''},
+  {c:'nach Hause kommen', word:'nach Hause kommen', es:'volver a casa', hint:''},
+  {c:'zu Abend essen', word:'zu Abend essen', es:'cenar', hint:''},
+  {c:'lernen', word:'lernen', es:'estudiar/aprender', hint:''},
+  {c:'ins Bett gehen', word:'ins Bett gehen', es:'irse a la cama', hint:''}
+];
+
+const M4_JAHRESZEITEN = [
+  {c:'der Frühling', word:'Frühling', es:'primavera', hint:''},
+  {c:'der Sommer', word:'Sommer', es:'verano', hint:''},
+  {c:'der Herbst', word:'Herbst', es:'otoño', hint:''},
+  {c:'der Winter', word:'Winter', es:'invierno', hint:''},
+  {c:'Januar', word:'Januar', es:'enero', hint:''},
+  {c:'Februar', word:'Februar', es:'febrero', hint:''},
+  {c:'März', word:'März', es:'marzo', hint:''},
+  {c:'April', word:'April', es:'abril', hint:''},
+  {c:'Mai', word:'Mai', es:'mayo', hint:''},
+  {c:'Juni', word:'Juni', es:'junio', hint:''},
+  {c:'Juli', word:'Juli', es:'julio', hint:''},
+  {c:'August', word:'August', es:'agosto', hint:''},
+  {c:'September', word:'September', es:'septiembre', hint:''},
+  {c:'Oktober', word:'Oktober', es:'octubre', hint:''},
+  {c:'November', word:'November', es:'noviembre', hint:''},
+  {c:'Dezember', word:'Dezember', es:'diciembre', hint:''}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab'};
+const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -1278,6 +1379,99 @@ const LESSONS = {
       {prompt:'Sie (ellos) ___ kein Fleisch. (mögen)', options:['mag','mögt','mögen'], correct:2}
     ],
     apply: 'Cierre del Módulo 3: escribe 2 frases con "Ich mag..." sobre comida que te gusta, y 1 frase con "Ich möchte..." como si estuvieras pidiendo algo en un café.'
+  },
+  m4_1_grammatik: {
+    heading: '4.1 Grammatik',
+    title: 'mit + Dativ & verbos separables de viaje',
+    intro: 'Para decir en qué medio de transporte viajas, usas la preposición "mit", que siempre va con dativo — el primer caso nuevo desde el nominativo y el acusativo. También ampliamos los verbos separables con los típicos del viaje.',
+    tables: [
+      {
+        title: 'mit + Dativ (artículo definido)',
+        rows: [ ['der → dem','mit dem Bus'], ['die → der','mit der U-Bahn'], ['das → dem','mit dem Auto'] ]
+      },
+      {
+        title: 'Verbos separables de viaje',
+        rows: [ ['abfahren (partir)','Der Zug fährt um 9 Uhr ab.'], ['ankommen (llegar)','Wir kommen um 10 Uhr an.'], ['einsteigen (subir/abordar)','Ich steige hier ein.'], ['aussteigen (bajar)','Sie steigt in Berlin aus.'], ['umsteigen (hacer trasbordo)','Wir steigen um.'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich fahre mit dem Bus zur Arbeit.', es:'Voy al trabajo en autobús.'},
+      {de:'Wir fahren mit der U-Bahn.', es:'Vamos en metro. (die U-Bahn → der en dativo)'},
+      {de:'Ich gehe zu Fuß.', es:'Voy a pie. (sin "mit", es una excepción)'},
+      {de:'Der Zug kommt um 15 Uhr an.', es:'El tren llega a las 15 horas.'}
+    ],
+    note: 'El dativo cambia el artículo según el género: masculino y neutro usan <strong>dem</strong>, femenino usa <strong>der</strong>. Es normal confundirlo al principio porque "der" también es el artículo masculino en nominativo — la clave es identificar primero el género real de la palabra.',
+    exercises: [
+      {prompt:'Ich fahre mit ___ Zug. (der Zug, dativo)', options:['dem','der','den'], correct:0},
+      {prompt:'Wir fahren mit ___ Straßenbahn. (die Straßenbahn, dativo)', options:['dem','der','das'], correct:1},
+      {prompt:'Ich fahre mit ___ Fahrrad. (das Fahrrad, dativo)', options:['dem','der','des'], correct:0},
+      {prompt:'Der Bus ___ um 8 Uhr ___. (abfahren)', options:['fährt … ab','abfährt …','fährt ab …'], correct:0},
+      {prompt:'Wir ___ in München ___. (umsteigen)', options:['steigen … um','umsteigen …','steigen um …'], correct:0},
+      {prompt:'¿Cuál de estas NO lleva "mit"?', options:['der Bus','das Auto','zu Fuß'], correct:2}
+    ],
+    apply: 'Describe cómo llegas normalmente al trabajo o la escuela, usando "mit + dativo" y al menos un verbo separable de esta lección (ankommen, umsteigen, etc.).'
+  },
+  m4_2_grammatik: {
+    heading: '4.2 Grammatik',
+    title: 'Perfekt mit haben',
+    intro: 'El Perfekt es el tiempo que se usa para hablar de acciones pasadas en la conversación cotidiana. Se forma con el verbo haben conjugado + el participio (Partizip II) al final de la frase — el mismo patrón de "corchete verbal" que ya conoces de können y los verbos separables.',
+    tables: [
+      {
+        title: 'Partizip II — verbos regulares (ge- + raíz + -t)',
+        rows: [ ['machen','gemacht'], ['kochen','gekocht'], ['lernen','gelernt'], ['arbeiten','gearbeitet'] ]
+      },
+      {
+        title: 'Partizip II — algunos irregulares con haben',
+        rows: [ ['essen','gegessen'], ['trinken','getrunken'], ['sehen','gesehen'], ['haben','gehabt'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich habe gestern gekocht.', es:'Cociné ayer.'},
+      {de:'Hast du schon gefrühstückt?', es:'¿Ya desayunaste?'},
+      {de:'Wir haben Deutsch gelernt.', es:'Aprendimos alemán.'},
+      {de:'Sie hat einen Apfel gegessen.', es:'Ella comió una manzana.'}
+    ],
+    note: 'La mayoría de los verbos usan <strong>haben</strong> en Perfekt — solo un grupo específico de verbos (de movimiento o cambio de estado) usa sein, que veremos en la siguiente lección. El participio siempre va al final de la frase.',
+    exercises: [
+      {prompt:'Ich ___ gestern gearbeitet. (haben)', options:['habe','hast','hat'], correct:0},
+      {prompt:'Participio de "machen":', options:['gemacht','machet','gemachen'], correct:0},
+      {prompt:'Wir ___ Pizza ___. (essen)', options:['haben … gegessen','haben … geesst','sind … gegessen'], correct:0},
+      {prompt:'___ du Kaffee getrunken? (haben)', options:['Hast','Bist','Hat'], correct:0},
+      {prompt:'Participio de "lernen":', options:['gelernen','gelernt','lernt'], correct:1},
+      {prompt:'Sie (ellos) ___ ferngesehen. (haben)', options:['hat','habt','haben'], correct:2}
+    ],
+    apply: 'Cuenta en 3 frases qué hiciste ayer, usando el Perfekt con haben (por ejemplo: gearbeitet, gekocht, gelernt, gegessen).'
+  },
+  m4_3_grammatik: {
+    heading: '4.3 Grammatik',
+    title: 'Perfekt mit sein & Zeitpräpositionen',
+    intro: 'Cerramos el Módulo 4 con el otro grupo del Perfekt: los verbos que usan sein en vez de haben (casi siempre verbos de movimiento o cambio de estado), y un repaso de las preposiciones de tiempo im/am/um.',
+    tables: [
+      {
+        title: 'Perfekt con sein (verbos de movimiento/cambio)',
+        rows: [ ['kommen','ist gekommen'], ['gehen','ist gegangen'], ['fahren','ist gefahren'], ['fliegen','ist geflogen'], ['aufstehen','ist aufgestanden'], ['bleiben','ist geblieben'] ]
+      },
+      {
+        title: 'Preposiciones de tiempo',
+        rows: [ ['im + mes/estación','im Januar, im Winter'], ['am + día','am Montag'], ['um + hora','um 8 Uhr'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich bin im Sommer nach Deutschland gefahren.', es:'Viajé a Alemania en verano.'},
+      {de:'Wir sind am Montag angekommen.', es:'Llegamos el lunes.'},
+      {de:'Er ist um 7 Uhr aufgestanden.', es:'Él se levantó a las 7.'},
+      {de:'Ich bin zu Hause geblieben.', es:'Me quedé en casa.'}
+    ],
+    note: 'Una forma fácil de reconocer los verbos que usan sein: casi siempre implican ir de un lugar a otro (kommen, gehen, fahren, fliegen) o un cambio de estado (aufstehen: de acostado a de pie). Todo lo demás, por defecto, usa haben.',
+    exercises: [
+      {prompt:'Ich ___ nach Berlin gefahren. (sein)', options:['habe','bin','hat'], correct:1},
+      {prompt:'Participio de "kommen":', options:['gekommt','gekommen','kommt'], correct:1},
+      {prompt:'Wir ___ um 6 Uhr aufgestanden. (sein)', options:['haben','sind','ist'], correct:1},
+      {prompt:'Der Winter beginnt ___ Dezember. (preposición)', options:['im','am','um'], correct:0},
+      {prompt:'Wir kommen ___ Montag an. (preposición)', options:['im','am','um'], correct:1},
+      {prompt:'Der Bus fährt ___ 9 Uhr ab. (preposición)', options:['im','am','um'], correct:2}
+    ],
+    apply: 'Cierre del Módulo 4: cuenta un viaje que hiciste (real o inventado) en 3-4 frases, combinando al menos un verbo con sein y una preposición de tiempo (im/am/um).'
   }
 };
 
