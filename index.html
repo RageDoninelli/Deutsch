@@ -204,9 +204,35 @@
   .dot{width:10px; height:10px; border-radius:3px; display:inline-block;}
 
   footer.app-footer{text-align:center; font-size:11px; color:var(--ink-soft); opacity:.6; padding:0 20px 20px;}
+
+  /* INSTALL BANNER */
+  #installBanner{
+    display:none; align-items:center; gap:10px; justify-content:space-between;
+    background:var(--cinnamon); color:#fff; padding:10px 14px;
+    font-size:13px; font-weight:500;
+  }
+  #installBanner .ib-text{display:flex; align-items:center; gap:8px; flex:1; line-height:1.3;}
+  #installBanner .ib-text .ib-icon{font-size:18px; flex-shrink:0;}
+  #installBanner .ib-actions{display:flex; align-items:center; gap:6px; flex-shrink:0;}
+  #installBtn{
+    background:#fff; color:var(--cinnamon-deep); border:none; border-radius:999px;
+    padding:7px 14px; font-family:inherit; font-weight:700; font-size:12.5px; cursor:pointer;
+  }
+  #installDismiss{
+    background:transparent; border:none; color:#fff; opacity:.75; font-size:18px;
+    line-height:1; cursor:pointer; padding:4px 6px;
+  }
 </style>
 </head>
 <body>
+
+<div id="installBanner">
+  <div class="ib-text"><span class="ib-icon">📲</span><span>Instala V.I.V.A. Strudel en tu pantalla de inicio</span></div>
+  <div class="ib-actions">
+    <button id="installBtn">Instalar</button>
+    <button id="installDismiss" aria-label="Cerrar">×</button>
+  </div>
+</div>
 
 <header>
   <div class="title">
@@ -663,13 +689,61 @@
 
     <p class="module-heading">Módulo 8 · Comparar y narrar</p>
 
-    <div class="set-card locked">
-      <div class="glyph">8.1</div>
+    <div class="set-card" data-set="m8_vergleiche">
+      <div class="glyph">Vg</div>
       <div class="info">
-        <div class="name">Comparativos</div>
-        <div class="stat">Próximamente</div>
+        <div class="name">8.1 Vokabeln: Vergleiche</div>
+        <div class="stat" id="stat-m8_vergleiche">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m8_vergleiche" style="width:0%"></div></div>
       </div>
     </div>
+
+    <div class="set-card" data-lesson="m8_1_grammatik" onclick="openLesson('m8_1_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">8.1 Grammatik: Komparativ & Superlativ</div>
+        <div class="stat" id="stat-lesson-m8_1_grammatik">más... / el más...</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m8_1_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m8_wetter">
+      <div class="glyph">We</div>
+      <div class="info">
+        <div class="name">8.2 Vokabeln: Wetter</div>
+        <div class="stat" id="stat-m8_wetter">0 / 12 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m8_wetter" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m8_2_grammatik" onclick="openLesson('m8_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">8.2 Grammatik: unpersönliches "es" & Wetter</div>
+        <div class="stat" id="stat-lesson-m8_2_grammatik">Expresiones de clima</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m8_2_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m8_wuensche">
+      <div class="glyph">Wu</div>
+      <div class="info">
+        <div class="name">8.3 Vokabeln: Wünsche & Zukunft</div>
+        <div class="stat" id="stat-m8_wuensche">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m8_wuensche" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m8_3_grammatik" onclick="openLesson('m8_3_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">8.3 Grammatik: Präteritum & Wünsche (hätte/würde)</div>
+        <div class="stat" id="stat-lesson-m8_3_grammatik">Narrar en pasado + deseos</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m8_3_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="intro-note" style="margin-top:22px;">🥨 Con el Módulo 8 se completa toda la estructura del nivel A1 — desde el alfabeto hasta contar historias en pasado y expresar deseos. ¡Herzlichen Glückwunsch!</p>
   </section>
 
   <!-- SET (study / practice / progress) -->
@@ -1142,10 +1216,51 @@ const M7_REGELN = [
   {c:'Hunde erlaubt', word:'Hunde erlaubt', es:'se permiten perros', hint:''}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN, m5_stadt:M5_STADT, m5_wohnung:M5_WOHNUNG, m5_vokallaenge:M5_VOKALLAENGE, m6_probleme:M6_PROBLEME, m6_berufsplaene:M6_BERUFSPLAENE, m6_bueroalltag:M6_BUEROALLTAG, m7_hausarbeit:M7_HAUSARBEIT, m7_personen:M7_PERSONEN, m7_regeln:M7_REGELN};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate', m5_stadt:'In der Stadt', m5_wohnung:'Wohnung', m5_vokallaenge:'Vokallänge', m6_probleme:'Probleme im Alltag', m6_berufsplaene:'Berufspläne', m6_bueroalltag:'Büroalltag', m7_hausarbeit:'Hausarbeit', m7_personen:'Personen beschreiben', m7_regeln:'Regeln & Erlaubnis'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab', m5_stadt:'vocab', m5_wohnung:'vocab', m5_vokallaenge:'phonetic', m6_probleme:'vocab', m6_berufsplaene:'vocab', m6_bueroalltag:'vocab', m7_hausarbeit:'vocab', m7_personen:'vocab', m7_regeln:'vocab'};
-const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf','m6_probleme','m6_berufsplaene','m6_bueroalltag','m7_hausarbeit','m7_regeln'];
+const M8_VERGLEICHE = [
+  {c:'schnell', word:'schnell', es:'rápido', hint:''},
+  {c:'langsam', word:'langsam', es:'lento', hint:''},
+  {c:'teuer', word:'teuer', es:'caro', hint:''},
+  {c:'billig', word:'billig', es:'barato', hint:''},
+  {c:'alt', word:'alt', es:'viejo', hint:''},
+  {c:'neu', word:'neu', es:'nuevo', hint:''},
+  {c:'gut', word:'gut', es:'bueno', hint:'Comparativo irregular: besser, am besten.'},
+  {c:'schlecht', word:'schlecht', es:'malo', hint:''},
+  {c:'einfach', word:'einfach', es:'fácil', hint:''},
+  {c:'schwierig', word:'schwierig', es:'difícil', hint:''}
+];
+
+const M8_WETTER = [
+  {c:'die Sonne', word:'Sonne', es:'el sol', hint:''},
+  {c:'der Regen', word:'Regen', es:'la lluvia', hint:''},
+  {c:'der Schnee', word:'Schnee', es:'la nieve', hint:''},
+  {c:'der Wind', word:'Wind', es:'el viento', hint:''},
+  {c:'die Wolke', word:'Wolke', es:'la nube', hint:''},
+  {c:'das Gewitter', word:'Gewitter', es:'la tormenta', hint:''},
+  {c:'kalt', word:'kalt', es:'frío', hint:''},
+  {c:'warm', word:'warm', es:'cálido / templado', hint:''},
+  {c:'heiß', word:'heiß', es:'caliente / caluroso', hint:''},
+  {c:'regnen', word:'regnen', es:'llover', hint:'"Es regnet." — sujeto impersonal "es".'},
+  {c:'schneien', word:'schneien', es:'nevar', hint:'"Es schneit."'},
+  {c:'scheinen', word:'scheinen', es:'brillar', hint:'"Die Sonne scheint."'}
+];
+
+const M8_WUENSCHE = [
+  {c:'der Wunsch', word:'Wunsch', es:'el deseo', hint:''},
+  {c:'sich wünschen', word:'sich wünschen', es:'desear', hint:'Verbo reflexivo: "Ich wünsche mir..."'},
+  {c:'träumen von', word:'träumen von', es:'soñar con', hint:''},
+  {c:'hoffen', word:'hoffen', es:'esperar / tener esperanza', hint:''},
+  {c:'die Zukunft', word:'Zukunft', es:'el futuro', hint:''},
+  {c:'das Glück', word:'Glück', es:'la suerte / la felicidad', hint:''},
+  {c:'gesund', word:'gesund', es:'sano / saludable', hint:''},
+  {c:'erfolgreich', word:'erfolgreich', es:'exitoso', hint:''},
+  {c:'reisen', word:'reisen', es:'viajar', hint:''},
+  {c:'die Reise', word:'Reise', es:'el viaje', hint:''}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN, m5_stadt:M5_STADT, m5_wohnung:M5_WOHNUNG, m5_vokallaenge:M5_VOKALLAENGE, m6_probleme:M6_PROBLEME, m6_berufsplaene:M6_BERUFSPLAENE, m6_bueroalltag:M6_BUEROALLTAG, m7_hausarbeit:M7_HAUSARBEIT, m7_personen:M7_PERSONEN, m7_regeln:M7_REGELN, m8_vergleiche:M8_VERGLEICHE, m8_wetter:M8_WETTER, m8_wuensche:M8_WUENSCHE};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate', m5_stadt:'In der Stadt', m5_wohnung:'Wohnung', m5_vokallaenge:'Vokallänge', m6_probleme:'Probleme im Alltag', m6_berufsplaene:'Berufspläne', m6_bueroalltag:'Büroalltag', m7_hausarbeit:'Hausarbeit', m7_personen:'Personen beschreiben', m7_regeln:'Regeln & Erlaubnis', m8_vergleiche:'Vergleiche', m8_wetter:'Wetter', m8_wuensche:'Wünsche & Zukunft'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab', m5_stadt:'vocab', m5_wohnung:'vocab', m5_vokallaenge:'phonetic', m6_probleme:'vocab', m6_berufsplaene:'vocab', m6_bueroalltag:'vocab', m7_hausarbeit:'vocab', m7_personen:'vocab', m7_regeln:'vocab', m8_vergleiche:'vocab', m8_wetter:'vocab', m8_wuensche:'vocab'};
+const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf','m6_probleme','m6_berufsplaene','m6_bueroalltag','m7_hausarbeit','m7_regeln','m8_wuensche'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -1987,6 +2102,99 @@ const LESSONS = {
       {prompt:'___ ich hier fotografieren? (dürfen, ich)', options:['Darf','Muss','Soll'], correct:0}
     ],
     apply: 'Cierre del Módulo 7: escribe 2 reglas de tu casa o trabajo con müssen, y 2 con dürfen/nicht dürfen (por ejemplo, sobre horarios, ruido, o mascotas).'
+  },
+  m8_1_grammatik: {
+    heading: '8.1 Grammatik',
+    title: 'Komparativ & Superlativ',
+    intro: 'Para comparar dos cosas ("más rápido que") o destacar la máxima cualidad ("el más rápido de todos"), el alemán usa el comparativo y el superlativo — con patrones muy regulares y solo unas pocas excepciones importantes.',
+    tables: [
+      {
+        title: 'Patrón regular',
+        rows: [ ['schnell (rápido)','schneller → am schnellsten'], ['billig (barato)','billiger → am billigsten'], ['alt (viejo)','älter → am ältesten (+Umlaut)'] ]
+      },
+      {
+        title: 'Irregulares importantes',
+        rows: [ ['gut (bueno)','besser → am besten'], ['gern (con gusto)','lieber → am liebsten'], ['viel (mucho)','mehr → am meisten'] ]
+      }
+    ],
+    examples: [
+      {de:'Der Zug ist schneller als der Bus.', es:'El tren es más rápido que el autobús. ("als" = que, para comparar)'},
+      {de:'Das Fahrrad ist billiger als das Auto.', es:'La bicicleta es más barata que el auto.'},
+      {de:'Dieses Café ist am besten.', es:'Este café es el mejor. (superlativo con "am -sten")'},
+      {de:'Ich reise am liebsten im Sommer.', es:'Prefiero viajar en verano, por encima de todo.'}
+    ],
+    note: 'El comparativo se forma agregando <strong>-er</strong> y usando <strong>als</strong> para "que" ("schneller als"). El superlativo usa <strong>am + adjetivo + -sten</strong>. Muchos adjetivos de una sílaba con a/o/u agregan diéresis (alt→älter, groß→größer) — es una irregularidad común, no una excepción aislada.',
+    exercises: [
+      {prompt:'Der Zug ist ___ als das Auto. (schnell, comparativo)', options:['schnell','schneller','am schnellsten'], correct:1},
+      {prompt:'Comparativo de "gut":', options:['guter','besser','gutter'], correct:1},
+      {prompt:'Superlativo de "billig":', options:['billiger','am billigsten','billigst'], correct:1},
+      {prompt:'Diese Wohnung ist ___ als meine alte. (klein, comparativo)', options:['kleiner','kleiner als','klein als'], correct:0},
+      {prompt:'"El más caro" se dice:', options:['teurer','am teuersten','teuerste'], correct:1},
+      {prompt:'Ich mag Kaffee, aber ich mag Tee ___. (gern, comparativo)', options:['gerner','lieber','mehr gern'], correct:1}
+    ],
+    apply: 'Compara 3 pares de cosas de tu vida diaria (dos ciudades, dos trabajos, dos comidas) usando comparativo con "als", y cierra con una frase de superlativo.'
+  },
+  m8_2_grammatik: {
+    heading: '8.2 Grammatik',
+    title: 'unpersönliches "es" & Wetter',
+    intro: 'Para hablar del clima, el alemán usa un "es" impersonal que no se refiere a nada en concreto — simplemente ocupa el lugar del sujeto, como el "it" del inglés en "it rains".',
+    tables: [
+      {
+        title: 'Expresiones de clima con "es"',
+        rows: [ ['es regnet','llueve'], ['es schneit','nieva'], ['es ist kalt / warm / heiß','hace frío / calor templado / mucho calor'], ['es gibt Gewitter','hay tormenta'] ]
+      }
+    ],
+    examples: [
+      {de:'Es regnet heute.', es:'Hoy llueve.'},
+      {de:'Im Winter schneit es oft.', es:'En invierno nieva seguido.'},
+      {de:'Die Sonne scheint, aber es ist kalt.', es:'El sol brilla, pero hace frío.'},
+      {de:'Im Sommer ist es wärmer als im Winter.', es:'En verano hace más calor que en invierno. (comparativo + clima)'}
+    ],
+    note: 'Este "es" es puramente gramatical — no se traduce como "eso" ni se refiere a nada. Solo ocupa la posición de sujeto que el alemán siempre exige. Lo verás también en otras expresiones fijas como "es gibt" (hay), que ya conoces del Módulo 2.',
+    exercises: [
+      {prompt:'___ regnet heute viel. (impersonal)', options:['Es','Das','Er'], correct:0},
+      {prompt:'Im Winter ___ es oft. (schneien)', options:['schneit','schneien','schneie'], correct:0},
+      {prompt:'Es ___ heute sehr heiß. (sein)', options:['ist','bin','sind'], correct:0},
+      {prompt:'Die Sonne ___. (scheinen)', options:['scheint','scheinst','scheine'], correct:0},
+      {prompt:'¿A qué se refiere el "es" en "es regnet"?', options:['A la lluvia','A nada en concreto, es gramatical','Al clima en general'], correct:1},
+      {prompt:'Im Sommer ist es ___ als im Winter. (warm, comparativo)', options:['wärmer','warm','am wärmsten'], correct:0}
+    ],
+    apply: 'Describe el clima de hoy y compáralo con otra estación del año, combinando expresiones con "es" y un comparativo (por ejemplo: "Heute ist es kälter als im Sommer.").'
+  },
+  m8_3_grammatik: {
+    heading: '8.3 Grammatik · Cierre del curso',
+    title: 'Präteritum (sein, haben, Modalverben) & Wünsche mit hätte/würde',
+    intro: 'Cerramos todo el nivel A1 con dos herramientas para narrar y expresar deseos. El Präteritum de sein, haben y los modales se usa incluso en el alemán hablado (a diferencia de otros verbos, que prefieren el Perfekt que ya conoces). Y hätte/würde te permiten expresar deseos de forma educada — el broche final del curso.',
+    tables: [
+      {
+        title: 'sein — Präteritum',
+        rows: [ ['ich','war'], ['du','warst'], ['er / sie / es','war'], ['wir','waren'], ['ihr','wart'], ['sie / Sie','waren'] ]
+      },
+      {
+        title: 'haben — Präteritum',
+        rows: [ ['ich','hatte'], ['du','hattest'], ['er / sie / es','hatte'], ['wir','hatten'], ['ihr','hattet'], ['sie / Sie','hatten'] ]
+      },
+      {
+        title: 'Modalverben — Präteritum (ich / er)',
+        rows: [ ['können','konnte'], ['wollen','wollte'], ['müssen','musste'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich war letztes Jahr in Berlin.', es:'Estuve en Berlín el año pasado.'},
+      {de:'Wir hatten keine Zeit.', es:'No tuvimos tiempo.'},
+      {de:'Ich wollte Deutsch lernen, und jetzt kann ich es!', es:'Quería aprender alemán, ¡y ahora puedo!'},
+      {de:'Ich hätte gern einen Kaffee. Ich würde gern nach Deutschland reisen.', es:'Quisiera un café. Me gustaría viajar a Alemania. (deseos educados)'}
+    ],
+    note: 'Para sein, haben y los modales, el alemán prefiere el <strong>Präteritum</strong> sobre el Perfekt, incluso al hablar. <strong>Hätte</strong> (de haben) y <strong>würde</strong> (verbo auxiliar) + infinitivo son formas educadas de expresar un deseo o una acción hipotética — mucho más suave que decir "ich will" directamente.',
+    exercises: [
+      {prompt:'Ich ___ letztes Jahr in München. (sein, Präteritum)', options:['war','bin','wäre'], correct:0},
+      {prompt:'Wir ___ keine Zeit. (haben, Präteritum)', options:['haben','hatten','hätten'], correct:1},
+      {prompt:'Sie (ella) ___ nicht kommen. (können, Präteritum)', options:['konnte','kann','könnte'], correct:0},
+      {prompt:'Ich ___ gern einen Tee. (hätte — deseo educado)', options:['habe','hätte','hatte'], correct:1},
+      {prompt:'Ich ___ gern nach Spanien reisen. (würde + infinitivo)', options:['würde','werde','war'], correct:0},
+      {prompt:'¿Qué tiempo se prefiere para sein/haben/modales, incluso al hablar?', options:['Perfekt','Präteritum','Futur'], correct:1}
+    ],
+    apply: '¡Cierre de todo el curso A1! Cuenta un recuerdo (real o inventado) usando el Präteritum de sein o haben, compara algo con un comparativo, y termina con un deseo usando "Ich hätte gern..." o "Ich würde gern...". Herzlichen Glückwunsch — completaste la estructura completa de alemán A1.'
   }
 };
 
@@ -2118,6 +2326,37 @@ if('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').catch(()=>{});
   });
 }
+
+/* ---------------- PWA: install banner ---------------- */
+let deferredInstallPrompt = null;
+const installBanner = document.getElementById('installBanner');
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+const installDismissed = localStorage.getItem('viva_strudel_install_dismissed') === '1';
+
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  if(!isStandalone && !installDismissed){
+    installBanner.style.display = 'flex';
+  }
+});
+
+document.getElementById('installBtn').onclick = async ()=>{
+  if(!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installBanner.style.display = 'none';
+};
+
+document.getElementById('installDismiss').onclick = ()=>{
+  installBanner.style.display = 'none';
+  localStorage.setItem('viva_strudel_install_dismissed', '1');
+};
+
+window.addEventListener('appinstalled', ()=>{
+  installBanner.style.display = 'none';
+});
 </script>
 </body>
 </html>
