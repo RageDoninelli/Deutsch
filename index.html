@@ -607,10 +607,66 @@
 
     <p class="module-heading">Módulo 7 · Personas y normas</p>
 
-    <div class="set-card locked">
-      <div class="glyph">7.1</div>
+    <div class="set-card" data-set="m7_hausarbeit">
+      <div class="glyph">Ha</div>
       <div class="info">
-        <div class="name">Imperativo informal</div>
+        <div class="name">7.1 Vokabeln: Hausarbeit</div>
+        <div class="stat" id="stat-m7_hausarbeit">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m7_hausarbeit" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m7_1_grammatik" onclick="openLesson('m7_1_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">7.1 Grammatik: Imperativ informal (du/ihr)</div>
+        <div class="stat" id="stat-lesson-m7_1_grammatik">Órdenes informales</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m7_1_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m7_personen">
+      <div class="glyph">Ps</div>
+      <div class="info">
+        <div class="name">7.2 Vokabeln: Personen beschreiben</div>
+        <div class="stat" id="stat-m7_personen">0 / 12 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m7_personen" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m7_2_grammatik" onclick="openLesson('m7_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">7.2 Grammatik: Adjektivendungen (Nominativ)</div>
+        <div class="stat" id="stat-lesson-m7_2_grammatik">Adjetivo antes del sustantivo</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m7_2_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m7_regeln">
+      <div class="glyph">Rg</div>
+      <div class="info">
+        <div class="name">7.3 Vokabeln: Regeln & Erlaubnis</div>
+        <div class="stat" id="stat-m7_regeln">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m7_regeln" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m7_3_grammatik" onclick="openLesson('m7_3_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">7.3 Grammatik: dürfen & müssen</div>
+        <div class="stat" id="stat-lesson-m7_3_grammatik">Permiso y obligación</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m7_3_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="module-heading">Módulo 8 · Comparar y narrar</p>
+
+    <div class="set-card locked">
+      <div class="glyph">8.1</div>
+      <div class="info">
+        <div class="name">Comparativos</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -1045,10 +1101,51 @@ const M6_BUEROALLTAG = [
   {c:'Rücksprache halten', word:'Rücksprache halten', es:'consultar / coordinar', hint:''}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN, m5_stadt:M5_STADT, m5_wohnung:M5_WOHNUNG, m5_vokallaenge:M5_VOKALLAENGE, m6_probleme:M6_PROBLEME, m6_berufsplaene:M6_BERUFSPLAENE, m6_bueroalltag:M6_BUEROALLTAG};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate', m5_stadt:'In der Stadt', m5_wohnung:'Wohnung', m5_vokallaenge:'Vokallänge', m6_probleme:'Probleme im Alltag', m6_berufsplaene:'Berufspläne', m6_bueroalltag:'Büroalltag'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab', m5_stadt:'vocab', m5_wohnung:'vocab', m5_vokallaenge:'phonetic', m6_probleme:'vocab', m6_berufsplaene:'vocab', m6_bueroalltag:'vocab'};
-const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf','m6_probleme','m6_berufsplaene','m6_bueroalltag'];
+const M7_HAUSARBEIT = [
+  {c:'aufräumen', word:'aufräumen', es:'ordenar', hint:'Verbo separable: "Räum dein Zimmer auf!"'},
+  {c:'putzen', word:'putzen', es:'limpiar', hint:''},
+  {c:'den Tisch decken', word:'den Tisch decken', es:'poner la mesa', hint:''},
+  {c:'die Wäsche waschen', word:'die Wäsche waschen', es:'lavar la ropa', hint:''},
+  {c:'den Müll rausbringen', word:'den Müll rausbringen', es:'sacar la basura', hint:'Verbo separable.'},
+  {c:'staubsaugen', word:'staubsaugen', es:'aspirar', hint:''},
+  {c:'abspülen', word:'abspülen', es:'lavar los platos', hint:'Verbo separable.'},
+  {c:'einkaufen', word:'einkaufen', es:'ir de compras', hint:'Verbo separable.'},
+  {c:'die Blumen gießen', word:'die Blumen gießen', es:'regar las plantas', hint:''},
+  {c:'das Bett machen', word:'das Bett machen', es:'tender la cama', hint:''}
+];
+
+const M7_PERSONEN = [
+  {c:'groß', word:'groß', es:'alto', hint:''},
+  {c:'klein', word:'klein', es:'bajo / pequeño', hint:''},
+  {c:'schlank', word:'schlank', es:'delgado', hint:''},
+  {c:'stark', word:'stark', es:'fuerte', hint:''},
+  {c:'freundlich', word:'freundlich', es:'amable', hint:''},
+  {c:'nett', word:'nett', es:'simpático', hint:''},
+  {c:'lustig', word:'lustig', es:'gracioso / divertido', hint:''},
+  {c:'ruhig', word:'ruhig', es:'tranquilo', hint:''},
+  {c:'schüchtern', word:'schüchtern', es:'tímido', hint:''},
+  {c:'die Augen', word:'Augen', es:'los ojos', hint:'"Er hat blaue Augen."'},
+  {c:'die Haare', word:'Haare', es:'el cabello', hint:'Siempre en plural en alemán.'},
+  {c:'tragen', word:'tragen', es:'llevar puesto / usar', hint:'"Sie trägt eine Brille."'}
+];
+
+const M7_REGELN = [
+  {c:'die Regel', word:'Regel', es:'la regla', hint:''},
+  {c:'verboten', word:'verboten', es:'prohibido', hint:''},
+  {c:'erlaubt', word:'erlaubt', es:'permitido', hint:''},
+  {c:'rauchen', word:'rauchen', es:'fumar', hint:''},
+  {c:'parken', word:'parken', es:'estacionar', hint:''},
+  {c:'die Ruhezeit', word:'Ruhezeit', es:'el horario de silencio', hint:'Común en edificios de apartamentos en Alemania.'},
+  {c:'der Ausweis', word:'Ausweis', es:'la identificación', hint:''},
+  {c:'laut sein', word:'laut sein', es:'ser/estar ruidoso', hint:''},
+  {c:'leise sein', word:'leise sein', es:'ser/estar silencioso', hint:''},
+  {c:'Hunde erlaubt', word:'Hunde erlaubt', es:'se permiten perros', hint:''}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN, m5_stadt:M5_STADT, m5_wohnung:M5_WOHNUNG, m5_vokallaenge:M5_VOKALLAENGE, m6_probleme:M6_PROBLEME, m6_berufsplaene:M6_BERUFSPLAENE, m6_bueroalltag:M6_BUEROALLTAG, m7_hausarbeit:M7_HAUSARBEIT, m7_personen:M7_PERSONEN, m7_regeln:M7_REGELN};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate', m5_stadt:'In der Stadt', m5_wohnung:'Wohnung', m5_vokallaenge:'Vokallänge', m6_probleme:'Probleme im Alltag', m6_berufsplaene:'Berufspläne', m6_bueroalltag:'Büroalltag', m7_hausarbeit:'Hausarbeit', m7_personen:'Personen beschreiben', m7_regeln:'Regeln & Erlaubnis'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab', m5_stadt:'vocab', m5_wohnung:'vocab', m5_vokallaenge:'phonetic', m6_probleme:'vocab', m6_berufsplaene:'vocab', m6_bueroalltag:'vocab', m7_hausarbeit:'vocab', m7_personen:'vocab', m7_regeln:'vocab'};
+const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf','m6_probleme','m6_berufsplaene','m6_bueroalltag','m7_hausarbeit','m7_regeln'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -1801,6 +1898,95 @@ const LESSONS = {
       {prompt:'¿Cuál suena más a instrucción directa (no reportada)?', options:['sollen','Imperativ mit Sie','wollen'], correct:1}
     ],
     apply: 'Cierre del Módulo 6: escribe 3 instrucciones que le darías a un colega en la oficina, usando el imperativo formal con Sie (por ejemplo, sobre firmar algo, esperar, o enviar un correo).'
+  },
+  m7_1_grammatik: {
+    heading: '7.1 Grammatik',
+    title: 'Imperativ informal (du / ihr)',
+    intro: 'Ya conoces el imperativo formal con Sie. Ahora toca la versión informal, que usas con amigos, familia o niños — perfecta para pedir ayuda con las tareas de casa.',
+    tables: [
+      {
+        title: 'du-Imperativ (quitas -st de la forma "du")',
+        rows: [ ['du machst → ','Mach!'], ['du räumst auf → ','Räum auf!'], ['du isst → ','Iss!'] ]
+      },
+      {
+        title: 'ihr-Imperativ (igual a la forma "ihr", sin el pronombre)',
+        rows: [ ['ihr macht → ','Macht!'], ['ihr räumt auf → ','Räumt auf!'] ]
+      }
+    ],
+    examples: [
+      {de:'Räum dein Zimmer auf!', es:'¡Ordena tu cuarto! (a una persona)'},
+      {de:'Macht die Hausaufgaben!', es:'¡Hagan la tarea! (a varias personas)'},
+      {de:'Deck bitte den Tisch!', es:'¡Pon la mesa, por favor!'},
+      {de:'Bring den Müll raus!', es:'¡Saca la basura! (verbo separable: prefijo al final)'}
+    ],
+    note: 'Con verbos que cambian la vocal en "du" (como lesen → du liest), el imperativo <strong>mantiene ese cambio</strong>: "Lies!" (no "Les!"). Con verbos separables, el prefijo se separa igual que siempre y va al final: "Räum auf!", "Bring raus!".',
+    exercises: [
+      {prompt:'Imperativo (du) de "machen":', options:['Mach!','Machst!','Machen!'], correct:0},
+      {prompt:'Imperativo (du) de "aufräumen":', options:['Aufräum!','Räum auf!','Räumst auf!'], correct:1},
+      {prompt:'Imperativo (ihr) de "putzen":', options:['Putz!','Putzt!','Putzen!'], correct:1},
+      {prompt:'Imperativo (du) de "lesen" (con cambio de vocal):', options:['Les!','Lese!','Lies!'], correct:2},
+      {prompt:'Imperativo (ihr) de "den Tisch decken":', options:['Deckt den Tisch!','Deck den Tisch!','Decken den Tisch!'], correct:0},
+      {prompt:'¿A quién usarías el imperativo con "ihr"?', options:['A una persona formal','A varias personas informalmente','A un desconocido'], correct:1}
+    ],
+    apply: 'Escribe 3 órdenes informales que le darías a un familiar o amigo sobre tareas de casa, usando tanto la forma "du" como "ihr".'
+  },
+  m7_2_grammatik: {
+    heading: '7.2 Grammatik',
+    title: 'Adjektivendungen (Nominativ)',
+    intro: 'Hasta ahora usaste adjetivos después de sein ("Er ist groß"), donde no llevan terminación. Pero cuando el adjetivo va antes del sustantivo, necesita una terminación que concuerda con el género — aquí vemos el patrón más simple, con artículo definido en nominativo.',
+    tables: [
+      {
+        title: 'Artículo definido + adjetivo + sustantivo (Nominativ)',
+        rows: [ ['masculino','der große Mann'], ['femenino','die kleine Frau'], ['neutro','das nette Kind'], ['plural','die freundlichen Leute'] ]
+      }
+    ],
+    examples: [
+      {de:'Er ist groß.', es:'Él es alto. (predicativo, sin terminación)'},
+      {de:'Der große Mann ist mein Kollege.', es:'El hombre alto es mi colega. (atributivo, con -e)'},
+      {de:'Die freundliche Frau arbeitet hier.', es:'La mujer amable trabaja aquí.'},
+      {de:'Das schüchterne Kind spielt allein.', es:'El niño tímido juega solo.'}
+    ],
+    note: 'La buena noticia: con artículo <strong>definido</strong> (der/die/das) en nominativo, casi todos los adjetivos toman simplemente <strong>-e</strong> — sin importar el género. Esto cambia con artículo indefinido o en otros casos, pero eso lo verás más adelante; por ahora domina este patrón, el más común al describir a alguien.',
+    exercises: [
+      {prompt:'Der ___ Mann trägt eine Brille. (groß)', options:['groß','große','großer'], correct:1},
+      {prompt:'Die ___ Frau ist meine Chefin. (nett)', options:['nett','nette','netten'], correct:1},
+      {prompt:'Das ___ Kind lacht viel. (lustig)', options:['lustig','lustige','lustiger'], correct:1},
+      {prompt:'Die ___ Leute wohnen nebenan. (freundlich, plural)', options:['freundlich','freundliche','freundlichen'], correct:2},
+      {prompt:'¿Qué terminación llevan los adjetivos con artículo definido en nominativo?', options:['-en','-e','-er'], correct:1},
+      {prompt:'Der ___ Kollege hilft immer. (ruhig)', options:['ruhig','ruhige','ruhiger'], correct:1}
+    ],
+    apply: 'Describe a dos personas que conoces (reales o inventadas) usando al menos un adjetivo antes del sustantivo con la terminación -e (por ejemplo: "die freundliche Nachbarin").'
+  },
+  m7_3_grammatik: {
+    heading: '7.3 Grammatik',
+    title: 'dürfen & müssen',
+    intro: 'Cerramos el Módulo 7 con dos modales clave para hablar de reglas: dürfen (tener permiso/poder) y müssen (tener que/deber). Su forma negativa es donde más se confunden, así que le prestamos atención especial.',
+    tables: [
+      {
+        title: 'dürfen (tener permiso)',
+        rows: [ ['ich','darf'], ['du','darfst'], ['er / sie / es','darf'], ['wir','dürfen'], ['ihr','dürft'], ['sie / Sie','dürfen'] ]
+      },
+      {
+        title: 'müssen (tener que)',
+        rows: [ ['ich','muss'], ['du','musst'], ['er / sie / es','muss'], ['wir','müssen'], ['ihr','müsst'], ['sie / Sie','müssen'] ]
+      }
+    ],
+    examples: [
+      {de:'Hier darf man nicht rauchen.', es:'Aquí no se puede fumar. (prohibido)'},
+      {de:'Du musst leise sein.', es:'Tienes que ser silencioso. (obligación)'},
+      {de:'Ihr müsst nicht arbeiten.', es:'No tienen que trabajar. (no es obligatorio, pero podrían si quisieran)'},
+      {de:'Ihr dürft nicht arbeiten.', es:'No tienen permitido trabajar. (prohibido)'}
+    ],
+    note: 'La trampa más común: <strong>nicht müssen</strong> significa "no es necesario" (hay libertad de elegir), mientras que <strong>nicht dürfen</strong> significa "está prohibido" (no hay opción). Son casi opuestos en matiz, aunque ambos llevan "nicht".',
+    exercises: [
+      {prompt:'Hier ___ man nicht parken. (dürfen — prohibido)', options:['darf','muss','soll'], correct:0},
+      {prompt:'Du ___ deine Hausaufgaben machen. (müssen — obligación)', options:['darfst','musst','sollst'], correct:1},
+      {prompt:'"No es necesario que vengas" se traduce con:', options:['Du darfst nicht kommen.','Du musst nicht kommen.','Du kannst nicht kommen.'], correct:1},
+      {prompt:'"Está prohibido fumar aquí" se traduce con:', options:['Man muss hier nicht rauchen.','Man darf hier nicht rauchen.','Man soll hier nicht rauchen.'], correct:1},
+      {prompt:'Wir ___ um 9 Uhr da sein. (müssen, wir)', options:['muss','müsst','müssen'], correct:2},
+      {prompt:'___ ich hier fotografieren? (dürfen, ich)', options:['Darf','Muss','Soll'], correct:0}
+    ],
+    apply: 'Cierre del Módulo 7: escribe 2 reglas de tu casa o trabajo con müssen, y 2 con dürfen/nicht dürfen (por ejemplo, sobre horarios, ruido, o mascotas).'
   }
 };
 
