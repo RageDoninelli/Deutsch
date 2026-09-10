@@ -551,10 +551,66 @@
 
     <p class="module-heading">Módulo 6 · El trabajo</p>
 
-    <div class="set-card locked">
-      <div class="glyph">6.1</div>
+    <div class="set-card" data-set="m6_probleme">
+      <div class="glyph">Pb</div>
       <div class="info">
-        <div class="name">Problemas cotidianos</div>
+        <div class="name">6.1 Vokabeln: Probleme im Alltag</div>
+        <div class="stat" id="stat-m6_probleme">0 / 12 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m6_probleme" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m6_1_grammatik" onclick="openLesson('m6_1_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">6.1 Grammatik: weil (oraciones subordinadas)</div>
+        <div class="stat" id="stat-lesson-m6_1_grammatik">Verbo al final</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m6_1_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m6_berufsplaene">
+      <div class="glyph">Bp</div>
+      <div class="info">
+        <div class="name">6.2 Vokabeln: Berufspläne</div>
+        <div class="stat" id="stat-m6_berufsplaene">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m6_berufsplaene" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m6_2_grammatik" onclick="openLesson('m6_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">6.2 Grammatik: wollen</div>
+        <div class="stat" id="stat-lesson-m6_2_grammatik">Planes e intenciones</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m6_2_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m6_bueroalltag">
+      <div class="glyph">Ba</div>
+      <div class="info">
+        <div class="name">6.3 Vokabeln: Büroalltag</div>
+        <div class="stat" id="stat-m6_bueroalltag">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m6_bueroalltag" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m6_3_grammatik" onclick="openLesson('m6_3_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">6.3 Grammatik: sollen & Imperativ formal (Sie)</div>
+        <div class="stat" id="stat-lesson-m6_3_grammatik">Instrucciones</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m6_3_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="module-heading">Módulo 7 · Personas y normas</p>
+
+    <div class="set-card locked">
+      <div class="glyph">7.1</div>
+      <div class="info">
+        <div class="name">Imperativo informal</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -948,10 +1004,51 @@ const M5_VOKALLAENGE = [
   {c:'Uhr', name:'vocal larga', word:'Uhr', es:'reloj', hint:'La "h" muda después de la vocal la alarga.'}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN, m5_stadt:M5_STADT, m5_wohnung:M5_WOHNUNG, m5_vokallaenge:M5_VOKALLAENGE};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate', m5_stadt:'In der Stadt', m5_wohnung:'Wohnung', m5_vokallaenge:'Vokallänge'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab', m5_stadt:'vocab', m5_wohnung:'vocab', m5_vokallaenge:'phonetic'};
-const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf'];
+const M6_PROBLEME = [
+  {c:'der Stress', word:'Stress', es:'estrés', hint:''},
+  {c:'müde sein', word:'müde sein', es:'estar cansado', hint:''},
+  {c:'krank sein', word:'krank sein', es:'estar enfermo', hint:''},
+  {c:'keine Zeit haben', word:'keine Zeit haben', es:'no tener tiempo', hint:''},
+  {c:'kaputt sein', word:'kaputt sein', es:'estar roto / descompuesto', hint:'"Der Computer ist kaputt."'},
+  {c:'verspätet sein', word:'verspätet sein', es:'llegar tarde', hint:''},
+  {c:'die Besprechung', word:'Besprechung', es:'la reunión', hint:''},
+  {c:'der Kollege / die Kollegin', word:'Kollege', es:'colega', hint:''},
+  {c:'der Chef / die Chefin', word:'Chef', es:'jefe / jefa', hint:''},
+  {c:'die Überstunden', word:'Überstunden', es:'las horas extra', hint:'Siempre en plural.'},
+  {c:'der Stau', word:'Stau', es:'el tráfico / embotellamiento', hint:''},
+  {c:'vergessen', word:'vergessen', es:'olvidar', hint:''}
+];
+
+const M6_BERUFSPLAENE = [
+  {c:'die Ausbildung', word:'Ausbildung', es:'la formación profesional', hint:''},
+  {c:'das Studium', word:'Studium', es:'los estudios universitarios', hint:''},
+  {c:'die Bewerbung', word:'Bewerbung', es:'la solicitud de empleo', hint:''},
+  {c:'der Lebenslauf', word:'Lebenslauf', es:'el currículum', hint:'Literalmente "recorrido de vida".'},
+  {c:'das Vorstellungsgespräch', word:'Vorstellungsgespräch', es:'la entrevista de trabajo', hint:''},
+  {c:'die Beförderung', word:'Beförderung', es:'el ascenso', hint:''},
+  {c:'das Ziel', word:'Ziel', es:'la meta', hint:''},
+  {c:'kündigen', word:'kündigen', es:'renunciar', hint:''},
+  {c:'die Stelle wechseln', word:'die Stelle wechseln', es:'cambiar de puesto', hint:''},
+  {c:'sich bewerben', word:'sich bewerben', es:'postularse', hint:'Verbo reflexivo: "Ich bewerbe mich."'}
+];
+
+const M6_BUEROALLTAG = [
+  {c:'das Formular ausfüllen', word:'das Formular ausfüllen', es:'llenar el formulario', hint:'Verbo separable: ausfüllen.'},
+  {c:'den Bericht schreiben', word:'den Bericht schreiben', es:'escribir el informe', hint:''},
+  {c:'die E-Mail schicken', word:'die E-Mail schicken', es:'enviar el correo', hint:''},
+  {c:'den Termin vereinbaren', word:'den Termin vereinbaren', es:'concertar la cita', hint:''},
+  {c:'unterschreiben', word:'unterschreiben', es:'firmar', hint:''},
+  {c:'Bescheid geben', word:'Bescheid geben', es:'avisar / informar', hint:''},
+  {c:'warten', word:'warten', es:'esperar', hint:''},
+  {c:'die Unterlagen', word:'Unterlagen', es:'los documentos', hint:'Siempre en plural.'},
+  {c:'die Frist', word:'Frist', es:'el plazo', hint:''},
+  {c:'Rücksprache halten', word:'Rücksprache halten', es:'consultar / coordinar', hint:''}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN, m5_stadt:M5_STADT, m5_wohnung:M5_WOHNUNG, m5_vokallaenge:M5_VOKALLAENGE, m6_probleme:M6_PROBLEME, m6_berufsplaene:M6_BERUFSPLAENE, m6_bueroalltag:M6_BUEROALLTAG};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate', m5_stadt:'In der Stadt', m5_wohnung:'Wohnung', m5_vokallaenge:'Vokallänge', m6_probleme:'Probleme im Alltag', m6_berufsplaene:'Berufspläne', m6_bueroalltag:'Büroalltag'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab', m5_stadt:'vocab', m5_wohnung:'vocab', m5_vokallaenge:'phonetic', m6_probleme:'vocab', m6_berufsplaene:'vocab', m6_bueroalltag:'vocab'};
+const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf','m6_probleme','m6_berufsplaene','m6_bueroalltag'];
 
 /* ---------------- TTS ---------------- */
 let deVoice = null;
@@ -1619,6 +1716,91 @@ const LESSONS = {
       {prompt:'¿Qué caso corresponde a "wohin?"', options:['Nominativ','Dativ','Akkusativ'], correct:2}
     ],
     apply: 'Cierre del Módulo 5: describe cómo acomodarías los muebles en una habitación nueva, usando al menos 2 frases con "wohin" (movimiento + acusativo) — por ejemplo, dónde pondrías la cama, la lámpara o el sofá.'
+  },
+  m6_1_grammatik: {
+    heading: '6.1 Grammatik',
+    title: 'weil (oraciones subordinadas)',
+    intro: 'Para explicar por qué algo es un problema, necesitas conectar dos ideas con "weil" (porque). Esto introduce una oración subordinada (Nebensatz), donde el verbo conjugado se manda al final — una estructura distinta a lo que has visto hasta ahora.',
+    tables: [
+      {
+        title: 'Orden normal vs. con weil',
+        rows: [ ['Oración principal','Ich bin müde. Ich habe viel gearbeitet.'], ['Con weil (verbo al final)','Ich bin müde, weil ich viel gearbeitet habe.'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich komme zu spät, weil es einen Stau gibt.', es:'Llego tarde porque hay tráfico.'},
+      {de:'Er ist gestresst, weil er keine Zeit hat.', es:'Él está estresado porque no tiene tiempo.'},
+      {de:'Wir haben ein Problem, weil der Computer kaputt ist.', es:'Tenemos un problema porque la computadora está descompuesta.'},
+      {de:'Sie ist müde, weil sie viele Überstunden gemacht hat.', es:'Ella está cansada porque hizo muchas horas extra.'}
+    ],
+    note: 'En alemán, "weil" manda el verbo conjugado al <strong>final</strong> de su oración (a diferencia del español, donde el orden no cambia). Si la oración con weil tiene un verbo compuesto (como el Perfekt), el verbo conjugado (haben/sein) va al final, después del participio.',
+    exercises: [
+      {prompt:'Ich bin müde, weil ich viel ___. (arbeiten, Perfekt)', options:['habe gearbeitet','gearbeitet habe','arbeite gehabt'], correct:1},
+      {prompt:'¿Dónde va el verbo conjugado en una oración con "weil"?', options:['Al inicio','En segunda posición','Al final'], correct:2},
+      {prompt:'Er kommt zu spät, weil es einen Stau ___. (geben)', options:['gibt','gibt es','es gibt'], correct:0},
+      {prompt:'Combina: "Ich bin krank." + "Ich bleibe zu Hause."', options:['Ich bleibe zu Hause, weil ich bin krank.','Ich bleibe zu Hause, weil ich krank bin.','Ich bin krank, weil bleibe ich zu Hause.'], correct:1},
+      {prompt:'Wir haben Stress, weil wir keine Zeit ___. (haben)', options:['haben','habt','hat'], correct:0},
+      {prompt:'Sie ist gestresst, weil sie eine wichtige ___ hat. (die Besprechung)', options:['Besprechung','Besprechungen','Besprechungs'], correct:0}
+    ],
+    apply: 'Escribe 3 frases sobre problemas cotidianos (reales o inventados) usando "weil" — por ejemplo, por qué estás cansado, por qué llegaste tarde, o por qué algo no funcionó.'
+  },
+  m6_2_grammatik: {
+    heading: '6.2 Grammatik',
+    title: 'wollen',
+    intro: 'El modal wollen expresa lo que quieres o piensas hacer — perfecto para hablar de planes profesionales. Sigue el mismo patrón que los otros modales: el verbo conjugado va en segunda posición y el verbo principal, en infinitivo, al final.',
+    tables: [
+      {
+        title: 'wollen (querer / tener la intención de)',
+        rows: [ ['ich','will'], ['du','willst'], ['er / sie / es','will'], ['wir','wollen'], ['ihr','wollt'], ['sie / Sie','wollen'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich will mich bei dieser Firma bewerben.', es:'Quiero postularme en esta empresa.'},
+      {de:'Sie will eine Beförderung bekommen.', es:'Ella quiere conseguir un ascenso.'},
+      {de:'Wir wollen unsere Stelle wechseln.', es:'Queremos cambiar de puesto.'},
+      {de:'Willst du ein Studium anfangen?', es:'¿Quieres empezar unos estudios universitarios?'}
+    ],
+    note: 'Ojo: "wollen" en primera y tercera persona singular es <strong>will</strong> (no "wolle" ni "willt") — es una excepción que hay que memorizar, igual que "kann" y "muss". El resto de las formas sí siguen un patrón más regular.',
+    exercises: [
+      {prompt:'Ich ___ mich bewerben. (wollen, ich)', options:['will','wolle','willst'], correct:0},
+      {prompt:'___ du kündigen? (wollen, du)', options:['Will','Willst','Wollt'], correct:1},
+      {prompt:'Wir ___ eine Ausbildung machen. (wollen, wir)', options:['will','wollt','wollen'], correct:2},
+      {prompt:'Er ___ sein Ziel erreichen. (wollen, er)', options:['will','wollt','wollen'], correct:0},
+      {prompt:'Ordena: "wechseln / die Stelle / ich / will"', options:['Ich will die Stelle wechseln.','Ich die Stelle will wechseln.','Will ich die Stelle wechseln.'], correct:0},
+      {prompt:'Sie (ellos) ___ ein Vorstellungsgespräch haben. (wollen)', options:['will','wollt','wollen'], correct:2}
+    ],
+    apply: 'Escribe 2-3 frases sobre tus propios planes profesionales usando "wollen" (por ejemplo, qué quieres estudiar, dónde quieres trabajar, o qué meta quieres alcanzar).'
+  },
+  m6_3_grammatik: {
+    heading: '6.3 Grammatik',
+    title: 'sollen & Imperativ formal (Sie)',
+    intro: 'Cerramos el Módulo 6 con dos formas de dar instrucciones en el trabajo: el modal sollen (deber, se espera que) y el imperativo formal con "Sie", que se usa para dar órdenes o pedir algo directamente de manera educada.',
+    tables: [
+      {
+        title: 'sollen (deber / se supone que)',
+        rows: [ ['ich','soll'], ['du','sollst'], ['er / sie / es','soll'], ['wir','sollen'], ['ihr','sollt'], ['sie / Sie','sollen'] ]
+      },
+      {
+        title: 'Imperativ formal (Sie) — verbo + Sie al inicio',
+        rows: [ ['ausfüllen','Füllen Sie das Formular aus.'], ['warten','Warten Sie bitte.'], ['unterschreiben','Unterschreiben Sie hier.'] ]
+      }
+    ],
+    examples: [
+      {de:'Sie sollen das Formular ausfüllen.', es:'Se supone que debe llenar el formulario. (instrucción reportada)'},
+      {de:'Füllen Sie das Formular aus, bitte.', es:'Llene el formulario, por favor. (orden directa)'},
+      {de:'Warten Sie bitte einen Moment.', es:'Espere un momento, por favor.'},
+      {de:'Schicken Sie mir bitte die Unterlagen.', es:'Envíeme los documentos, por favor.'}
+    ],
+    note: 'El imperativo formal se forma con el <strong>infinitivo del verbo + Sie</strong>, en ese orden, al inicio de la frase (¡el verbo va primero!). Con verbos separables, el prefijo se separa igual que siempre y va al final: "Füllen Sie... aus." La diferencia con sollen es que este último suena más a "se espera que" u "otra persona te lo dijo", mientras el imperativo es una instrucción directa tuya.',
+    exercises: [
+      {prompt:'Ich ___ den Bericht heute schreiben. (sollen, ich)', options:['soll','sollst','sollt'], correct:0},
+      {prompt:'Imperativo formal de "unterschreiben":', options:['Sie unterschreiben.','Unterschreiben Sie.','Unterschreibt Sie.'], correct:1},
+      {prompt:'___ Sie bitte hier. (warten, imperativo)', options:['Warten','Wartet','Wartest'], correct:0},
+      {prompt:'Du ___ die E-Mail heute schicken. (sollen, du)', options:['soll','sollst','sollt'], correct:1},
+      {prompt:'Imperativo formal de "das Formular ausfüllen":', options:['Füllen Sie das Formular aus.','Sie füllen das Formular aus.','Ausfüllen Sie das Formular.'], correct:0},
+      {prompt:'¿Cuál suena más a instrucción directa (no reportada)?', options:['sollen','Imperativ mit Sie','wollen'], correct:1}
+    ],
+    apply: 'Cierre del Módulo 6: escribe 3 instrucciones que le darías a un colega en la oficina, usando el imperativo formal con Sie (por ejemplo, sobre firmar algo, esperar, o enviar un correo).'
   }
 };
 
