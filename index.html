@@ -504,10 +504,57 @@
 
     <p class="module-heading">Módulo 5 · En la ciudad</p>
 
-    <div class="set-card locked">
-      <div class="glyph">5.1</div>
+    <div class="set-card" data-set="m5_stadt">
+      <div class="glyph">St</div>
       <div class="info">
-        <div class="name">Direcciones y ubicación</div>
+        <div class="name">5.1 Vokabeln: In der Stadt</div>
+        <div class="stat" id="stat-m5_stadt">0 / 13 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m5_stadt" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m5_1_grammatik" onclick="openLesson('m5_1_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">5.1 Grammatik: Präpositionen mit Dativ (wo?)</div>
+        <div class="stat" id="stat-lesson-m5_1_grammatik">Ubicación</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m5_1_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m5_wohnung">
+      <div class="glyph">Wh</div>
+      <div class="info">
+        <div class="name">5.2 Vokabeln: Wohnung</div>
+        <div class="stat" id="stat-m5_wohnung">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m5_wohnung" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-lesson="m5_2_grammatik" onclick="openLesson('m5_2_grammatik')">
+      <div class="glyph">Gr</div>
+      <div class="info">
+        <div class="name">5.2 Grammatik: Wechselpräpositionen (wohin?)</div>
+        <div class="stat" id="stat-lesson-m5_2_grammatik">Movimiento + Akkusativ</div>
+        <div class="bar"><div class="bar-fill" id="bar-lesson-m5_2_grammatik" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="set-card" data-set="m5_vokallaenge">
+      <div class="glyph">Vl</div>
+      <div class="info">
+        <div class="name">5.3 Aussprache: Vokallänge</div>
+        <div class="stat" id="stat-m5_vokallaenge">0 / 10 dominadas</div>
+        <div class="bar"><div class="bar-fill" id="bar-m5_vokallaenge" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <p class="module-heading">Módulo 6 · El trabajo</p>
+
+    <div class="set-card locked">
+      <div class="glyph">6.1</div>
+      <div class="info">
+        <div class="name">Problemas cotidianos</div>
         <div class="stat">Próximamente</div>
       </div>
     </div>
@@ -859,9 +906,51 @@ const M4_JAHRESZEITEN = [
   {c:'Dezember', word:'Dezember', es:'diciembre', hint:''}
 ];
 
-const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN};
-const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate'};
-const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab'};
+const M5_STADT = [
+  {c:'die Bank', word:'Bank', es:'banco', hint:''},
+  {c:'die Post', word:'Post', es:'correo', hint:''},
+  {c:'der Bahnhof', word:'Bahnhof', es:'estación de tren', hint:''},
+  {c:'die Apotheke', word:'Apotheke', es:'farmacia', hint:''},
+  {c:'das Kino', word:'Kino', es:'cine', hint:''},
+  {c:'der Supermarkt', word:'Supermarkt', es:'supermercado', hint:''},
+  {c:'die Kirche', word:'Kirche', es:'iglesia', hint:''},
+  {c:'das Rathaus', word:'Rathaus', es:'ayuntamiento', hint:''},
+  {c:'der Park', word:'Park', es:'parque', hint:''},
+  {c:'die Bibliothek', word:'Bibliothek', es:'biblioteca', hint:''},
+  {c:'links', word:'links', es:'a la izquierda', hint:''},
+  {c:'rechts', word:'rechts', es:'a la derecha', hint:''},
+  {c:'geradeaus', word:'geradeaus', es:'derecho / recto', hint:''}
+];
+
+const M5_WOHNUNG = [
+  {c:'das Wohnzimmer', word:'Wohnzimmer', es:'sala de estar', hint:''},
+  {c:'das Schlafzimmer', word:'Schlafzimmer', es:'dormitorio', hint:''},
+  {c:'die Küche', word:'Küche', es:'cocina', hint:''},
+  {c:'das Badezimmer', word:'Badezimmer', es:'baño', hint:''},
+  {c:'der Flur', word:'Flur', es:'pasillo', hint:''},
+  {c:'der Balkon', word:'Balkon', es:'balcón', hint:''},
+  {c:'der Keller', word:'Keller', es:'sótano', hint:''},
+  {c:'die Garage', word:'Garage', es:'garaje', hint:''},
+  {c:'das Arbeitszimmer', word:'Arbeitszimmer', es:'estudio / oficina en casa', hint:''},
+  {c:'der Garten', word:'Garten', es:'jardín', hint:''}
+];
+
+const M5_VOKALLAENGE = [
+  {c:'Mann', name:'vocal corta', word:'Mann', es:'hombre', hint:'La doble consonante (nn) después de la vocal marca que es corta.'},
+  {c:'Bahn', name:'vocal larga', word:'Bahn', es:'tren / vía', hint:'La "h" muda después de la vocal la alarga.'},
+  {c:'Bett', name:'vocal corta', word:'Bett', es:'cama', hint:'La doble "tt" marca vocal corta.'},
+  {c:'Tee', name:'vocal larga', word:'Tee', es:'té', hint:'La vocal doble (ee) siempre se alarga.'},
+  {c:'Mitte', name:'vocal corta', word:'Mitte', es:'centro', hint:'La doble "tt" marca vocal corta.'},
+  {c:'Miete', name:'vocal larga', word:'Miete', es:'renta / alquiler', hint:'"ie" siempre se pronuncia i larga.'},
+  {c:'Sonne', name:'vocal corta', word:'Sonne', es:'sol', hint:'La doble "nn" marca vocal corta.'},
+  {c:'Sohn', name:'vocal larga', word:'Sohn', es:'hijo', hint:'La "h" muda después de la vocal la alarga.'},
+  {c:'Mutter', name:'vocal corta', word:'Mutter', es:'madre', hint:'La doble "tt" marca vocal corta.'},
+  {c:'Uhr', name:'vocal larga', word:'Uhr', es:'reloj', hint:'La "h" muda después de la vocal la alarga.'}
+];
+
+const SETS = {buchstaben:BUCHSTABEN, sonderzeichen:SONDERZEICHEN, digraphe:DIGRAPHE, m1_begruessung:M1_BEGRUESSUNG, m1_berufe:M1_BERUFE, m1_zahlen:M1_ZAHLEN, m1_familie:M1_FAMILIE, m1_sprachen:M1_SPRACHEN, m2_moebel:M2_MOEBEL, m2_farben:M2_FARBEN, m2_gegenstaende:M2_GEGENSTAENDE, m2_buero:M2_BUERO, m3_hobbys:M3_HOBBYS, m3_uhrzeit:M3_UHRZEIT, m3_essen:M3_ESSEN, m4_verkehr:M4_VERKEHR, m4_tagesablauf:M4_TAGESABLAUF, m4_jahreszeiten:M4_JAHRESZEITEN, m5_stadt:M5_STADT, m5_wohnung:M5_WOHNUNG, m5_vokallaenge:M5_VOKALLAENGE};
+const SET_LABEL = {buchstaben:'Buchstaben', sonderzeichen:'Sonderzeichen', digraphe:'Digraphe', m1_begruessung:'Begrüßung & Länder', m1_berufe:'Berufe', m1_zahlen:'Zahlen 0–100', m1_familie:'Familie', m1_sprachen:'Sprachen', m2_moebel:'Möbel', m2_farben:'Farben', m2_gegenstaende:'Gegenstände & Materialien', m2_buero:'Büro & Technik', m3_hobbys:'Hobbys', m3_uhrzeit:'Uhrzeit & Wochentage', m3_essen:'Essen & Trinken', m4_verkehr:'Verkehrsmittel', m4_tagesablauf:'Tagesablauf', m4_jahreszeiten:'Jahreszeiten & Monate', m5_stadt:'In der Stadt', m5_wohnung:'Wohnung', m5_vokallaenge:'Vokallänge'};
+const SET_KIND = {buchstaben:'phonetic', sonderzeichen:'phonetic', digraphe:'phonetic', m1_begruessung:'vocab', m1_berufe:'vocab', m1_zahlen:'vocab', m1_familie:'vocab', m1_sprachen:'vocab', m2_moebel:'vocab', m2_farben:'vocab', m2_gegenstaende:'vocab', m2_buero:'vocab', m3_hobbys:'vocab', m3_uhrzeit:'vocab', m3_essen:'vocab', m4_verkehr:'vocab', m4_tagesablauf:'vocab', m4_jahreszeiten:'vocab', m5_stadt:'vocab', m5_wohnung:'vocab', m5_vokallaenge:'phonetic'};
 const WIDE_SETS = ['m1_begruessung','m1_berufe','m2_gegenstaende','m3_hobbys','m3_uhrzeit','m4_tagesablauf'];
 
 /* ---------------- TTS ---------------- */
@@ -1472,6 +1561,64 @@ const LESSONS = {
       {prompt:'Der Bus fährt ___ 9 Uhr ab. (preposición)', options:['im','am','um'], correct:2}
     ],
     apply: 'Cierre del Módulo 4: cuenta un viaje que hiciste (real o inventado) en 3-4 frases, combinando al menos un verbo con sein y una preposición de tiempo (im/am/um).'
+  },
+  m5_1_grammatik: {
+    heading: '5.1 Grammatik',
+    title: 'Präpositionen mit Dativ (wo? — ubicación)',
+    intro: 'Para decir dónde está algo (sin movimiento), usamos preposiciones de lugar con dativo. Son nueve preposiciones muy comunes que también verás en la próxima lección, pero esta vez con acusativo cuando hay movimiento.',
+    tables: [
+      {
+        title: 'Preposiciones de ubicación (+ Dativ)',
+        rows: [ ['in (en)','in der Stadt'], ['an (junto a)','am Bahnhof'], ['auf (sobre)','auf dem Tisch'], ['neben (al lado de)','neben der Post'], ['vor (delante de)','vor dem Kino'], ['hinter (detrás de)','hinter dem Rathaus'], ['zwischen (entre)','zwischen der Bank und der Post'], ['unter (debajo de)','unter der Brücke'], ['über (encima de)','über dem Regal'] ]
+      }
+    ],
+    examples: [
+      {de:'Die Bank ist neben der Post.', es:'El banco está al lado del correo.'},
+      {de:'Der Park ist hinter dem Rathaus.', es:'El parque está detrás del ayuntamiento.'},
+      {de:'Die Apotheke ist zwischen dem Kino und der Bibliothek.', es:'La farmacia está entre el cine y la biblioteca.'},
+      {de:'Gehen Sie geradeaus, dann links.', es:'Vaya derecho, luego a la izquierda.'}
+    ],
+    note: 'Dos contracciones muy comunes: <strong>in + dem = im</strong> ("im Park") y <strong>an + dem = am</strong> ("am Bahnhof"). El resto de las combinaciones (der, dem, den) no se contraen y se usan tal cual, según el género del sustantivo.',
+    exercises: [
+      {prompt:'Die Bibliothek ist neben ___ Bank. (die Bank, dativo)', options:['dem','der','den'], correct:1},
+      {prompt:'Der Supermarkt ist ___ Park. (in + dem, contracción)', options:['im','in dem','in der'], correct:0},
+      {prompt:'Das Kino ist vor ___ Rathaus. (das Rathaus, dativo)', options:['dem','der','das'], correct:0},
+      {prompt:'Wir treffen uns ___ Bahnhof. (an + dem, contracción)', options:['am','an dem','an der'], correct:0},
+      {prompt:'Die Post ist zwischen ___ Kirche und ___ Kino.', options:['der … dem','dem … der','die … das'], correct:0},
+      {prompt:'¿Qué preposición significa "detrás de"?', options:['vor','hinter','neben'], correct:1}
+    ],
+    apply: 'Describe dónde están 3 lugares de tu ciudad o barrio real, usando al menos dos preposiciones distintas de esta lección (neben, hinter, zwischen, etc.).'
+  },
+  m5_2_grammatik: {
+    heading: '5.2 Grammatik',
+    title: 'Wechselpräpositionen (wohin? — movimiento + Akkusativ)',
+    intro: 'Las mismas nueve preposiciones de la lección anterior cambian a acusativo cuando describen movimiento hacia un lugar (wohin? = ¿hacia dónde?), en vez de una ubicación fija (wo? = ¿dónde?). Por eso se llaman "Wechselpräpositionen" — preposiciones que cambian.',
+    tables: [
+      {
+        title: 'wo? (Dativ) vs. wohin? (Akkusativ)',
+        rows: [ ['wo? — Die Lampe ist auf dem Tisch.','ubicación, sin movimiento'], ['wohin? — Ich stelle die Lampe auf den Tisch.','movimiento hacia el lugar'] ]
+      },
+      {
+        title: 'Ejemplos con Akkusativ (wohin?)',
+        rows: [ ['in + die Küche','Ich gehe in die Küche.'], ['auf + den Tisch','Ich lege das Buch auf den Tisch.'], ['neben + das Bett','Ich stelle die Lampe neben das Bett.'] ]
+      }
+    ],
+    examples: [
+      {de:'Ich gehe ins Wohnzimmer.', es:'Voy a la sala. (in + das = ins, contracción)'},
+      {de:'Er legt das Handy auf den Tisch.', es:'Él pone el celular sobre la mesa.'},
+      {de:'Wir stellen das Sofa neben das Fenster.', es:'Ponemos el sofá al lado de la ventana.'},
+      {de:'Die Katze läuft unter das Bett.', es:'El gato corre debajo de la cama. (movimiento hacia abajo)'}
+    ],
+    note: 'La pregunta clave es: ¿hay movimiento hacia un destino, o solo describo dónde está algo ya parado? Si hay movimiento con destino → <strong>Akkusativ</strong> (wohin?). Si solo describes una posición fija → <strong>Dativ</strong> (wo?), como en la lección anterior. Contracción común: <strong>in + das = ins</strong>.',
+    exercises: [
+      {prompt:'Ich gehe in ___ Küche. (die Küche, movimiento)', options:['der','die','dem'], correct:1},
+      {prompt:'Er legt das Buch auf ___ Tisch. (der Tisch, movimiento)', options:['dem','den','der'], correct:1},
+      {prompt:'Ich gehe ___ Wohnzimmer. (in + das, contracción)', options:['ins','im','in der'], correct:0},
+      {prompt:'Die Lampe ist auf ___ Tisch. (sin movimiento — ¿wo o wohin?)', options:['den (Akkusativ)','dem (Dativ)','die (Nominativ)'], correct:1},
+      {prompt:'Wir stellen den Stuhl neben ___ Bett. (das Bett, movimiento)', options:['dem','das','der'], correct:1},
+      {prompt:'¿Qué caso corresponde a "wohin?"', options:['Nominativ','Dativ','Akkusativ'], correct:2}
+    ],
+    apply: 'Cierre del Módulo 5: describe cómo acomodarías los muebles en una habitación nueva, usando al menos 2 frases con "wohin" (movimiento + acusativo) — por ejemplo, dónde pondrías la cama, la lámpara o el sofá.'
   }
 };
 
